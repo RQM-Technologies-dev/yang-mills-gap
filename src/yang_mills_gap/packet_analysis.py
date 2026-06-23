@@ -85,6 +85,7 @@ def summarize_packet(run_dir: str | Path) -> dict[str, Any]:
     return {
         "run_dir": packet["run_dir"],
         "label": packet["config"].get("label"),
+        "research_objective": packet["config"].get("research_objective"),
         "claim_boundary": packet["config"].get("claim_boundary"),
         "n_observations": len(observables),
         "final_record": final_record,

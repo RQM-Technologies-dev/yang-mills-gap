@@ -8,6 +8,12 @@ Central thesis:
 
 This repository explores, models, interprets, and tests finite-lattice structures. It is not a Clay Yang-Mills mass-gap result.
 
+## Research Objective
+
+This repo is an attempt to build a disciplined Resonant Quantum Mechanics / Quaternionic Spectral Geometry route toward the Yang-Mills mass gap. The working hypothesis is that the Yang-Mills mass gap may arise as the lowest nonzero energy of a closed, gauge-invariant, non-abelian curvature resonance.
+
+The research program separates standard SU(2) Wilson-action finite-lattice diagnostics, RQM/QSG interpretation, nonstandard deformation experiments, and the future continuum proof target. Finite-lattice packets are diagnostic evidence and engineering scaffolding, not a continuum proof by themselves.
+
 ## Scope
 
 The first phase implements standard SU(2) Wilson lattice Yang-Mills without RQM deformation:
@@ -43,6 +49,12 @@ Use packets as the default container for future finite-lattice sanity diagnostic
 
 `exp_008_diagnostic_run_packet.py` writes observable diagnostics for action and average closure defect. `exp_009_correlator_run_packet.py` adds glueball-like samples, connected correlator diagnostics, bootstrap uncertainty, and log/cosh effective-mass diagnostics. Both are finite-lattice sanity diagnostics only, not Clay mass-gap results.
 
+## Sweep Packets
+
+`exp_010_beta_seed_sweep_packets.py` creates a tiny beta/seed sweep of correlator/effective-mass packets under `outputs/run_packets/sweeps/`. It writes per-packet artifacts plus `sweep_config.json`, `sweep_summary.csv`, `packet_comparison.csv`, and a sweep `manifest.json`.
+
+Sweep packet comparisons are implementation diagnostics for the finite-lattice baseline. They are useful for auditing trends and failure modes, but they are not Yang-Mills mass-gap evidence at the continuum level.
+
 ## Quick Start
 
 ```bash
@@ -64,6 +76,7 @@ python experiments/exp_006_rqm_anchor_deformation_nonstandard.py
 python experiments/exp_007_full_vs_local_metropolis_sanity.py
 python experiments/exp_008_diagnostic_run_packet.py
 python experiments/exp_009_correlator_run_packet.py
+python experiments/exp_010_beta_seed_sweep_packets.py
 ```
 
 Figures are written to `outputs/figures`. Numerical data is written to `outputs/data`.
@@ -84,7 +97,11 @@ src/yang_mills_gap/
   diagnostics.py       Running means, autocorrelation, thermalization summaries
   experiment_driver.py Shared tiny-chain diagnostic driver
   packet_analysis.py   Dependency-light packet loading and summaries
+  packet_compare.py    Packet summary and comparison CSV helpers
+  packet_plots.py      Reusable diagnostic plot helpers
   run_packet.py        Reproducible diagnostic packet writers
+  spectroscopy_packet.py Correlator/effective-mass packet helpers
+  sweep_packets.py     Beta/seed sweep packet helpers
 ```
 
 Read `CLAIM_DISCIPLINE.md` before using this repository for public claims or summaries.

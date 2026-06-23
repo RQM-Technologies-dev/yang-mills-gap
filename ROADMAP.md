@@ -17,11 +17,13 @@
 - Compare full-action and local-action Metropolis paths on tiny lattices as an implementation sanity check.
 - Wrap finite-lattice sanity runs in diagnostic packets with config, observables, diagnostics, and plots.
 - Maintain separate packet examples for observable diagnostics and correlator/effective-mass diagnostics.
+- Add packet comparison and beta/seed sweep diagnostics.
 - Explore beta and lattice-size dependence.
 - Move from smoke-test lattices to larger volumes only after baseline diagnostics are stable.
 
 ## Phase 3: Glueball-Like Correlators
 
+- Run larger lattice sweeps once the packet pipeline is stable.
 - Refine spatial plaquette operators.
 - Improve connected correlator statistics.
 - Fit effective-mass plateaus with uncertainty estimates.
@@ -36,6 +38,7 @@
 - Map plaquette holonomy to curvature closure.
 - Map Wilson action to closure cost.
 - Interpret the mass-gap target as the lowest nonzero closed gauge-invariant curvature resonance.
+- Develop the RQM closure-resonance interpretation as a working hypothesis over standard gauge-invariant packet outputs.
 - Keep the interpretation separate from deformed dynamics.
 
 ## Phase 5: Nonstandard Anchor Deformations
@@ -50,3 +53,4 @@
 - Document what would be required for a continuum construction.
 - Track the gaps between finite-lattice numerics and rigorous spectral claims.
 - Keep proof-oriented language conditional until each analytical step is supplied.
+- Convert finite-lattice closure-resonance candidates into precise continuum/proof targets only after baseline numerical behavior is auditable.
