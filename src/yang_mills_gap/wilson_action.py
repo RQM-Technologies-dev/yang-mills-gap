@@ -8,7 +8,7 @@ from numpy.typing import ArrayLike, NDArray
 from .gauge_field import GaugeField
 from .lattice import Site
 from .plaquette import all_closure_defects
-from .quaternions import inverse, multiply, scalar_part
+from .quaternions import inverse, multiply, normalize, scalar_part
 
 
 def wilson_action(field: GaugeField, beta: float) -> float:
@@ -65,14 +65,18 @@ def local_wilson_action_contribution(
     """Return the Wilson-action contribution from plaquettes touching one link.
 
     Supplying ``link`` evaluates the local contribution for a proposed link
-    without mutating the field. The returned contribution is suitable for
-    action-difference tests and local Metropolis proposals.
+    without mutating the field. Proposed links are normalized internally so the
+    local contribution is evaluated on SU(2), matching ``GaugeField.set_link``.
+    The returned contribution is suitable for action-difference tests and local
+    Metropolis proposals.
     """
 
     if beta < 0:
         raise ValueError("beta must be nonnegative")
+    if not 0 <= mu < field.lattice.ndim:
+        raise ValueError("direction mu must be in {0, 1, 2, 3}")
 
-    candidate_link = field.link(site, mu) if link is None else np.asarray(link, dtype=float)
+    candidate_link = field.link(site, mu) if link is None else normalize(link)
     scalar_sum = float(scalar_part(multiply(candidate_link, staple_sum(field, site, mu))))
     touching_plaquettes = 2 * (field.lattice.ndim - 1)
     return float(beta * (touching_plaquettes - scalar_sum))

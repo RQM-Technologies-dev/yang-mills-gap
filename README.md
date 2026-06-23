@@ -46,6 +46,7 @@ python experiments/exp_003_wilson_action_metropolis.py
 python experiments/exp_004_glueball_correlator.py
 python experiments/exp_005_effective_mass_plateau.py
 python experiments/exp_006_rqm_anchor_deformation_nonstandard.py
+python experiments/exp_007_full_vs_local_metropolis_sanity.py
 ```
 
 Figures are written to `outputs/figures`. Numerical data is written to `outputs/data`.
@@ -63,6 +64,7 @@ src/yang_mills_gap/
   monte_carlo.py       Full-action reference and local-action Metropolis sweeps
   correlators.py       Connected temporal correlator plus bootstrap/jackknife helpers
   effective_mass.py    Log and cosh effective-mass estimators
+  diagnostics.py       Running means, autocorrelation, thermalization plots
 ```
 
 Read `CLAIM_DISCIPLINE.md` before using this repository for public claims or summaries.

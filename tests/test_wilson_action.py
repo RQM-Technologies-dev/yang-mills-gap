@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 
 from yang_mills_gap.gauge_field import GaugeField
 from yang_mills_gap.lattice import Lattice4D
@@ -21,6 +22,34 @@ def test_staple_sum_has_quaternion_shape() -> None:
     rng = np.random.default_rng(654)
     field = GaugeField.random(Lattice4D((2, 2, 2, 2)), rng)
     assert staple_sum(field, (0, 1, 0, 1), 2).shape == (4,)
+
+
+def test_local_action_validates_beta_and_direction() -> None:
+    field = GaugeField.cold(Lattice4D((2, 2, 2, 2)))
+    site = (0, 0, 0, 0)
+
+    with pytest.raises(ValueError):
+        wilson_action(field, beta=-1.0)
+    with pytest.raises(ValueError):
+        local_wilson_action_contribution(field, site, 0, beta=-1.0)
+    with pytest.raises(ValueError):
+        staple_sum(field, site, 4)
+    with pytest.raises(ValueError):
+        local_wilson_action_contribution(field, site, 4, beta=1.0)
+
+
+def test_local_action_normalizes_proposed_link() -> None:
+    rng = np.random.default_rng(655)
+    field = GaugeField.random(Lattice4D((2, 2, 2, 2)), rng)
+    site = (0, 1, 0, 1)
+    mu = 2
+    unit_link = propose_link(field.link(site, mu), step_size=0.25, rng=rng)
+    scaled_link = 3.0 * unit_link
+
+    assert np.isclose(
+        local_wilson_action_contribution(field, site, mu, beta=2.0, link=unit_link),
+        local_wilson_action_contribution(field, site, mu, beta=2.0, link=scaled_link),
+    )
 
 
 def test_local_action_difference_matches_full_action_difference() -> None:

@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from yang_mills_gap.correlators import bootstrap_correlator, temporal_correlator
 from yang_mills_gap.gauge_field import GaugeField
 from yang_mills_gap.lattice import Lattice4D
-from yang_mills_gap.monte_carlo import metropolis_sweep
+from yang_mills_gap.monte_carlo import metropolis_sweep_local
 from yang_mills_gap.observables import glueball_timeseries
 
 
@@ -31,7 +31,7 @@ def main() -> None:
     field = GaugeField.cold(Lattice4D((1, 1, 1, 4)))
     samples: list[np.ndarray] = []
     for sweep in range(1, 13):
-        metropolis_sweep(field, beta=2.2, step_size=0.42, rng=rng)
+        metropolis_sweep_local(field, beta=2.2, step_size=0.42, rng=rng)
         if sweep > 4:
             samples.append(glueball_timeseries(field))
 

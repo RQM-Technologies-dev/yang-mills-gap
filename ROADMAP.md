@@ -14,6 +14,7 @@
 - Treat current experiments as tiny finite-lattice sanity diagnostics.
 - Add autocorrelation estimates and thermalization diagnostics before interpreting long chains.
 - Use bootstrap or jackknife errors for correlators and effective-mass diagnostics.
+- Compare full-action and local-action Metropolis paths on tiny lattices as an implementation sanity check.
 - Explore beta and lattice-size dependence.
 - Move from smoke-test lattices to larger volumes only after baseline diagnostics are stable.
 
