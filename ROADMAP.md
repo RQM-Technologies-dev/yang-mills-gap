@@ -25,6 +25,7 @@
 - Fit effective-mass plateaus with uncertainty estimates.
 - Compare finite-volume and finite-spacing behavior.
 - Require larger lattices, thermalization checks, autocorrelation estimates, and uncertainty analysis before treating an effective-mass plateau as physically meaningful.
+- Treat effective-mass plots as diagnostics only until thermalization, autocorrelation, and uncertainty checks are reported beside them.
 
 ## Phase 4: RQM Interpretation Layer
 

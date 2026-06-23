@@ -1,4 +1,8 @@
-"""Glueball-like connected correlator from spatial plaquettes."""
+"""Tiny finite-lattice sanity diagnostic for a glueball-like correlator.
+
+This exercises the local-action Metropolis path. The output is not a mass-gap
+estimate; it is a small code-path and plotting check.
+"""
 
 from __future__ import annotations
 

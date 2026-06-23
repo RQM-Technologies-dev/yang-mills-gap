@@ -1,4 +1,10 @@
-"""Compare full-action and local-action Metropolis paths on tiny lattices."""
+"""Broad sanity comparison of full-action and local-action Metropolis sweeps.
+
+The two chains intentionally use different random streams. This tiny
+finite-lattice diagnostic checks that the local-action path lands in the same
+rough observable range as the slower full-action reference path; it does not
+require identical trajectories.
+"""
 
 from __future__ import annotations
 
@@ -10,16 +16,12 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from yang_mills_gap.gauge_field import GaugeField
 from yang_mills_gap.lattice import Lattice4D
-from yang_mills_gap.monte_carlo import metropolis_sweep_full_action, metropolis_sweep_local
-from yang_mills_gap.observables import average_closure_defect
-from yang_mills_gap.wilson_action import wilson_action
+from yang_mills_gap.monte_carlo import run_metropolis
 
 
 def main() -> None:
@@ -30,49 +32,71 @@ def main() -> None:
 
     lattice = Lattice4D((2, 2, 2, 2))
     beta = 2.2
-    n_sweeps = 6
-    rng_start = np.random.default_rng(7007)
-    initial = GaugeField.random(lattice, rng_start)
-    full_field = initial.copy()
-    local_field = initial.copy()
-    full_rng = np.random.default_rng(7707)
-    local_rng = np.random.default_rng(7707)
+    common_kwargs = {
+        "n_sweeps": 8,
+        "step_size": 0.35,
+        "thermalization": 0,
+        "measure_every": 1,
+        "hot_start": True,
+    }
+    _, full_records = run_metropolis(
+        lattice,
+        beta,
+        use_local_action=False,
+        seed=7007,
+        **common_kwargs,
+    )
+    _, local_records = run_metropolis(
+        lattice,
+        beta,
+        use_local_action=True,
+        seed=8008,
+        **common_kwargs,
+    )
 
-    records: list[dict[str, float]] = []
-    for sweep in range(1, n_sweeps + 1):
-        full_stats = metropolis_sweep_full_action(full_field, beta, step_size=0.35, rng=full_rng)
-        local_stats = metropolis_sweep_local(local_field, beta, step_size=0.35, rng=local_rng)
-        records.append(
-            {
-                "sweep": float(sweep),
-                "full_action": wilson_action(full_field, beta),
-                "local_action": wilson_action(local_field, beta),
-                "action_abs_diff": abs(wilson_action(full_field, beta) - wilson_action(local_field, beta)),
-                "full_average_closure_defect": average_closure_defect(full_field),
-                "local_average_closure_defect": average_closure_defect(local_field),
-                "closure_abs_diff": abs(average_closure_defect(full_field) - average_closure_defect(local_field)),
-                "full_acceptance_rate": full_stats.acceptance_rate,
-                "local_acceptance_rate": local_stats.acceptance_rate,
-                "max_link_abs_diff": float(np.max(np.abs(full_field.links - local_field.links))),
-            }
-        )
+    rows: list[dict[str, float | str]] = []
+    for kind, records in [("full_action", full_records), ("local_action", local_records)]:
+        for record in records:
+            rows.append(
+                {
+                    "kind": kind,
+                    "sweep": record["sweep"],
+                    "acceptance_rate": record["acceptance_rate"],
+                    "average_plaquette": record["average_plaquette"],
+                    "average_closure_defect": record["average_closure_defect"],
+                    "action": record["action"],
+                }
+            )
 
     csv_path = data_dir / "exp_007_full_vs_local_metropolis_sanity.csv"
     with csv_path.open("w", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(records[0].keys()))
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=[
+                "kind",
+                "sweep",
+                "acceptance_rate",
+                "average_plaquette",
+                "average_closure_defect",
+                "action",
+            ],
+        )
         writer.writeheader()
-        writer.writerows(records)
+        writer.writerows(rows)
 
-    sweeps = [record["sweep"] for record in records]
-    fig, axes = plt.subplots(2, 1, figsize=(7, 6), sharex=True)
-    axes[0].plot(sweeps, [record["full_action"] for record in records], marker="o", label="full action")
-    axes[0].plot(sweeps, [record["local_action"] for record in records], marker="s", label="local action")
-    axes[0].set_ylabel("Wilson action")
+    sweeps = [record["sweep"] for record in full_records]
+    fig, axes = plt.subplots(3, 1, figsize=(7, 8), sharex=True)
+    for records, label in [(full_records, "full action"), (local_records, "local action")]:
+        axes[0].plot(sweeps, [record["acceptance_rate"] for record in records], marker="o", label=label)
+        axes[1].plot(sweeps, [record["average_plaquette"] for record in records], marker="o", label=label)
+        axes[2].plot(sweeps, [record["average_closure_defect"] for record in records], marker="o", label=label)
+
+    axes[0].set_ylabel("acceptance")
+    axes[1].set_ylabel("avg plaquette")
+    axes[2].set_ylabel("avg D_p")
+    axes[2].set_xlabel("sweep")
     axes[0].legend()
-    axes[1].plot(sweeps, [record["action_abs_diff"] for record in records], marker="o")
-    axes[1].set_xlabel("sweep")
-    axes[1].set_ylabel("|delta action|")
-    fig.suptitle("Full-action vs local-action Metropolis sanity check")
+    fig.suptitle("Full-action vs local-action tiny-lattice sanity diagnostic")
     fig.tight_layout()
     fig.savefig(fig_dir / "exp_007_full_vs_local_metropolis_sanity.png", dpi=160)
 

@@ -8,7 +8,7 @@ from numpy.typing import ArrayLike, NDArray
 from .gauge_field import GaugeField
 from .lattice import Site
 from .plaquette import all_closure_defects
-from .quaternions import inverse, multiply, normalize, scalar_part
+from .quaternions import inverse, multiply, scalar_part
 
 
 def wilson_action(field: GaugeField, beta: float) -> float:
@@ -65,10 +65,9 @@ def local_wilson_action_contribution(
     """Return the Wilson-action contribution from plaquettes touching one link.
 
     Supplying ``link`` evaluates the local contribution for a proposed link
-    without mutating the field. Proposed links are normalized internally so the
-    local contribution is evaluated on SU(2), matching ``GaugeField.set_link``.
-    The returned contribution is suitable for action-difference tests and local
-    Metropolis proposals.
+    without mutating the field. Proposed links must be explicit unit
+    quaternions with shape ``(4,)``. The returned contribution is suitable for
+    action-difference tests and local Metropolis proposals.
     """
 
     if beta < 0:
@@ -76,7 +75,14 @@ def local_wilson_action_contribution(
     if not 0 <= mu < field.lattice.ndim:
         raise ValueError("direction mu must be in {0, 1, 2, 3}")
 
-    candidate_link = field.link(site, mu) if link is None else normalize(link)
+    if link is None:
+        candidate_link = field.link(site, mu)
+    else:
+        candidate_link = np.asarray(link, dtype=float)
+        if candidate_link.shape != (4,):
+            raise ValueError("candidate link must have shape (4,)")
+        if not np.isclose(np.linalg.norm(candidate_link), 1.0):
+            raise ValueError("candidate link must have unit norm")
     scalar_sum = float(scalar_part(multiply(candidate_link, staple_sum(field, site, mu))))
     touching_plaquettes = 2 * (field.lattice.ndim - 1)
     return float(beta * (touching_plaquettes - scalar_sum))

@@ -38,7 +38,7 @@ def test_local_action_validates_beta_and_direction() -> None:
         local_wilson_action_contribution(field, site, 4, beta=1.0)
 
 
-def test_local_action_normalizes_proposed_link() -> None:
+def test_local_action_rejects_nonunit_or_malformed_proposed_link() -> None:
     rng = np.random.default_rng(655)
     field = GaugeField.random(Lattice4D((2, 2, 2, 2)), rng)
     site = (0, 1, 0, 1)
@@ -46,10 +46,11 @@ def test_local_action_normalizes_proposed_link() -> None:
     unit_link = propose_link(field.link(site, mu), step_size=0.25, rng=rng)
     scaled_link = 3.0 * unit_link
 
-    assert np.isclose(
-        local_wilson_action_contribution(field, site, mu, beta=2.0, link=unit_link),
-        local_wilson_action_contribution(field, site, mu, beta=2.0, link=scaled_link),
-    )
+    assert np.isfinite(local_wilson_action_contribution(field, site, mu, beta=2.0, link=unit_link))
+    with pytest.raises(ValueError):
+        local_wilson_action_contribution(field, site, mu, beta=2.0, link=scaled_link)
+    with pytest.raises(ValueError):
+        local_wilson_action_contribution(field, site, mu, beta=2.0, link=np.ones((2, 4)))
 
 
 def test_local_action_difference_matches_full_action_difference() -> None:

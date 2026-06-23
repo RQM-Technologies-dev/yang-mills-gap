@@ -26,6 +26,8 @@ The current experiments are tiny finite-lattice sanity diagnostics. They are mea
 
 Meaningful mass-gap estimates would require larger lattices, thermalization checks, autocorrelation estimates, uncertainty analysis, and systematic finite-volume and finite-spacing studies. The package now includes local staple-based action differences, a faster local Metropolis sweep, log and cosh effective-mass estimators, and bootstrap/jackknife correlator uncertainty helpers to support that later work.
 
+Effective-mass plots from the current tiny runs should not be interpreted without thermalization, autocorrelation, and uncertainty diagnostics.
+
 The anchor deformation example remains nonstandard and separate from the baseline Wilson action.
 
 ## Quick Start
@@ -64,7 +66,7 @@ src/yang_mills_gap/
   monte_carlo.py       Full-action reference and local-action Metropolis sweeps
   correlators.py       Connected temporal correlator plus bootstrap/jackknife helpers
   effective_mass.py    Log and cosh effective-mass estimators
-  diagnostics.py       Running means, autocorrelation, thermalization plots
+  diagnostics.py       Running means, autocorrelation, thermalization summaries
 ```
 
 Read `CLAIM_DISCIPLINE.md` before using this repository for public claims or summaries.
