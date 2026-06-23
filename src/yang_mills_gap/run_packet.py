@@ -8,6 +8,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
+import numpy as np
+from numpy.typing import ArrayLike
+
 
 def save_config_json(path: str | Path, config: Mapping[str, Any]) -> Path:
     """Write a JSON configuration file and return its path."""
@@ -46,6 +49,23 @@ def save_diagnostics_json(path: str | Path, diagnostics: Mapping[str, Any]) -> P
     output_path = Path(path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(dict(diagnostics), indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    return output_path
+
+
+def save_manifest_json(run_dir: str | Path, manifest: Mapping[str, Any]) -> Path:
+    """Write ``manifest.json`` at the root of a run packet."""
+
+    return save_diagnostics_json(Path(run_dir) / "manifest.json", manifest)
+
+
+def save_array(path: str | Path, array: ArrayLike) -> Path:
+    """Save a NumPy array to ``.npy`` format."""
+
+    output_path = Path(path)
+    if output_path.suffix != ".npy":
+        raise ValueError("array path must use .npy suffix")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    np.save(output_path, np.asarray(array))
     return output_path
 
 

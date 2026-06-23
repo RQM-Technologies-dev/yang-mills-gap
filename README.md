@@ -41,6 +41,8 @@ The first reproducibility layer writes diagnostic run packets under `outputs/run
 
 Use packets as the default container for future finite-lattice sanity diagnostics. No effective-mass plot should be interpreted without the accompanying diagnostics packet.
 
+`exp_008_diagnostic_run_packet.py` writes observable diagnostics for action and average closure defect. `exp_009_correlator_run_packet.py` adds glueball-like samples, connected correlator diagnostics, bootstrap uncertainty, and log/cosh effective-mass diagnostics. Both are finite-lattice sanity diagnostics only, not Clay mass-gap results.
+
 ## Quick Start
 
 ```bash
@@ -61,6 +63,7 @@ python experiments/exp_005_effective_mass_plateau.py
 python experiments/exp_006_rqm_anchor_deformation_nonstandard.py
 python experiments/exp_007_full_vs_local_metropolis_sanity.py
 python experiments/exp_008_diagnostic_run_packet.py
+python experiments/exp_009_correlator_run_packet.py
 ```
 
 Figures are written to `outputs/figures`. Numerical data is written to `outputs/data`.
@@ -80,6 +83,7 @@ src/yang_mills_gap/
   effective_mass.py    Log and cosh effective-mass estimators
   diagnostics.py       Running means, autocorrelation, thermalization summaries
   experiment_driver.py Shared tiny-chain diagnostic driver
+  packet_analysis.py   Dependency-light packet loading and summaries
   run_packet.py        Reproducible diagnostic packet writers
 ```
 

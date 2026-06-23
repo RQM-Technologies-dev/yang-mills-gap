@@ -5,8 +5,16 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import numpy as np
 
-from yang_mills_gap.run_packet import create_run_dir, save_diagnostics_json, save_figure, save_records_csv
+from yang_mills_gap.run_packet import (
+    create_run_dir,
+    save_array,
+    save_diagnostics_json,
+    save_figure,
+    save_manifest_json,
+    save_records_csv,
+)
 
 
 def test_run_packet_creates_expected_files(tmp_path) -> None:
@@ -31,3 +39,19 @@ def test_run_packet_creates_expected_files(tmp_path) -> None:
     assert json.loads(diagnostics_path.read_text()) == {"action": {"iat": 0.5}}
     assert figure_path == run_dir / "plots" / "example.png"
     assert figure_path.exists()
+
+
+def test_manifest_and_array_writers(tmp_path) -> None:
+    run_dir = create_run_dir(tmp_path, "manifest-test", {"label": "diagnostic"})
+    array_path = save_array(run_dir / "samples.npy", np.arange(6).reshape(2, 3))
+    manifest_path = save_manifest_json(
+        run_dir,
+        {
+            "artifacts": {"samples": "samples.npy"},
+            "arrays": {"samples": "samples.npy"},
+        },
+    )
+
+    assert array_path == run_dir / "samples.npy"
+    assert np.array_equal(np.load(array_path), np.arange(6).reshape(2, 3))
+    assert json.loads(manifest_path.read_text())["arrays"]["samples"] == "samples.npy"
