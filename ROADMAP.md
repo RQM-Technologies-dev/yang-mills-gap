@@ -18,16 +18,17 @@
 - Wrap finite-lattice sanity runs in diagnostic packets with config, observables, diagnostics, and plots.
 - Maintain separate packet examples for observable diagnostics and correlator/effective-mass diagnostics.
 - Add packet comparison and beta/seed sweep diagnostics.
+- Add plateau heuristic diagnostics for candidate flat effective-mass windows while keeping them explicitly non-proof diagnostics.
 - Explore beta and lattice-size dependence.
 - Move from smoke-test lattices to larger volumes only after baseline diagnostics are stable.
 
 ## Phase 3: Glueball-Like Correlators
 
 - Run larger lattice sweeps once the packet pipeline is stable.
-- Refine spatial plaquette operators.
+- Refine spatial plaquette operators and develop improved glueball operators.
 - Improve connected correlator statistics.
 - Fit effective-mass plateaus with uncertainty estimates.
-- Compare finite-volume and finite-spacing behavior.
+- Compare finite-volume and finite-spacing behavior with larger lattice and finite-volume checks.
 - Require larger lattices, thermalization checks, autocorrelation estimates, and uncertainty analysis before treating an effective-mass plateau as physically meaningful.
 - Treat effective-mass plots as diagnostics only until thermalization, autocorrelation, and uncertainty checks are reported beside them.
 - Require an accompanying diagnostic packet before comparing effective-mass plots across runs.
@@ -39,6 +40,7 @@
 - Map Wilson action to closure cost.
 - Interpret the mass-gap target as the lowest nonzero closed gauge-invariant curvature resonance.
 - Develop the RQM closure-resonance interpretation as a working hypothesis over standard gauge-invariant packet outputs.
+- Write a dedicated closure-resonance interpretation document connecting packet diagnostics to precise future analytical targets.
 - Keep the interpretation separate from deformed dynamics.
 
 ## Phase 5: Nonstandard Anchor Deformations

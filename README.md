@@ -53,7 +53,9 @@ Use packets as the default container for future finite-lattice sanity diagnostic
 
 `exp_010_beta_seed_sweep_packets.py` creates a tiny beta/seed sweep of correlator/effective-mass packets under `outputs/run_packets/sweeps/`. It writes per-packet artifacts plus `sweep_config.json`, `sweep_summary.csv`, `packet_comparison.csv`, and a sweep `manifest.json`.
 
-Sweep packet comparisons are implementation diagnostics for the finite-lattice baseline. They are useful for auditing trends and failure modes, but they are not Yang-Mills mass-gap evidence at the continuum level.
+`inspect_latest_sweep.py` summarizes the newest sweep, including beta/seed coverage and the best packet under a simple cosh effective-mass plateau heuristic.
+
+Sweep packet comparisons are implementation diagnostics for the finite-lattice baseline. They are useful for auditing trends and failure modes, but they are not Yang-Mills mass-gap evidence at the continuum level. Plateau detection is a heuristic diagnostic for candidate flat windows; it is not a proof of a mass gap.
 
 ## Quick Start
 
@@ -77,6 +79,7 @@ python experiments/exp_007_full_vs_local_metropolis_sanity.py
 python experiments/exp_008_diagnostic_run_packet.py
 python experiments/exp_009_correlator_run_packet.py
 python experiments/exp_010_beta_seed_sweep_packets.py
+python experiments/inspect_latest_sweep.py
 ```
 
 Figures are written to `outputs/figures`. Numerical data is written to `outputs/data`.
@@ -94,6 +97,7 @@ src/yang_mills_gap/
   monte_carlo.py       Full-action reference and local-action Metropolis sweeps
   correlators.py       Connected temporal correlator plus bootstrap/jackknife helpers
   effective_mass.py    Log and cosh effective-mass estimators
+  plateau.py           Simple effective-mass plateau heuristics
   diagnostics.py       Running means, autocorrelation, thermalization summaries
   experiment_driver.py Shared tiny-chain diagnostic driver
   packet_analysis.py   Dependency-light packet loading and summaries
