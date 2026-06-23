@@ -10,7 +10,7 @@ from .gauge_field import GaugeField
 from .lattice import Lattice4D
 from .observables import average_closure_defect, average_plaquette
 from .quaternions import multiply, near_identity_random_unit_quaternion, normalize
-from .wilson_action import wilson_action
+from .wilson_action import local_wilson_action_contribution, wilson_action
 
 
 @dataclass(frozen=True)
@@ -34,7 +34,7 @@ def propose_link(
     return normalize(proposal)
 
 
-def metropolis_sweep(
+def metropolis_sweep_full_action(
     field: GaugeField,
     beta: float,
     *,
@@ -70,6 +70,52 @@ def metropolis_sweep(
     return MetropolisStats(accepted=accepted, proposed=proposed)
 
 
+def metropolis_sweep(
+    field: GaugeField,
+    beta: float,
+    *,
+    step_size: float = 0.35,
+    rng: np.random.Generator | None = None,
+) -> MetropolisStats:
+    """Reference Metropolis sweep that recomputes the full action."""
+
+    return metropolis_sweep_full_action(field, beta, step_size=step_size, rng=rng)
+
+
+def metropolis_sweep_local(
+    field: GaugeField,
+    beta: float,
+    *,
+    step_size: float = 0.35,
+    rng: np.random.Generator | None = None,
+) -> MetropolisStats:
+    """Perform one Metropolis sweep using local Wilson-action differences."""
+
+    generator = np.random.default_rng() if rng is None else rng
+    accepted = 0
+    proposed = 0
+
+    for site in field.lattice.sites():
+        for mu in range(4):
+            old_link = field.link(site, mu).copy()
+            new_link = propose_link(old_link, step_size, generator)
+            old_local_action = local_wilson_action_contribution(field, site, mu, beta)
+            new_local_action = local_wilson_action_contribution(
+                field,
+                site,
+                mu,
+                beta,
+                link=new_link,
+            )
+            delta = new_local_action - old_local_action
+            proposed += 1
+            if delta <= 0.0 or generator.random() < np.exp(-delta):
+                field.set_link(site, mu, new_link)
+                accepted += 1
+
+    return MetropolisStats(accepted=accepted, proposed=proposed)
+
+
 def run_metropolis(
     lattice: Lattice4D,
     beta: float,
@@ -79,6 +125,7 @@ def run_metropolis(
     thermalization: int = 0,
     measure_every: int = 1,
     hot_start: bool = False,
+    use_local_action: bool = True,
     seed: int | None = None,
 ) -> tuple[GaugeField, list[dict[str, float]]]:
     """Run a small Metropolis chain and return the final field plus records."""
@@ -95,7 +142,10 @@ def run_metropolis(
     records: list[dict[str, float]] = []
 
     for sweep in range(1, n_sweeps + 1):
-        stats = metropolis_sweep(field, beta, step_size=step_size, rng=rng)
+        if use_local_action:
+            stats = metropolis_sweep_local(field, beta, step_size=step_size, rng=rng)
+        else:
+            stats = metropolis_sweep_full_action(field, beta, step_size=step_size, rng=rng)
         if sweep > thermalization and (sweep - thermalization) % measure_every == 0:
             records.append(
                 {

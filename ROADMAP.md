@@ -6,15 +6,16 @@
 - Build a periodic 4D lattice helper.
 - Store SU(2) gauge fields as unit-quaternion link variables.
 - Compute plaquette holonomy, closure defect, and Wilson action.
-- Add gauge-invariant observables and simple Metropolis updates.
-- Verify quaternion identities, plaquette identity behavior, gauge invariance, and nonnegative Wilson action.
+- Add gauge-invariant observables, full-action reference Metropolis updates, and local staple-based Metropolis updates.
+- Verify quaternion identities, plaquette identity behavior, gauge invariance, Wilson-loop invariance, nonnegative Wilson action, and local action differences.
 
 ## Phase 2: Baseline Numerical Quality
 
-- Replace full-action Metropolis proposals with local staple action differences.
-- Add autocorrelation estimates and thermalization diagnostics.
-- Add bootstrap or jackknife errors for correlators.
+- Treat current experiments as tiny finite-lattice sanity diagnostics.
+- Add autocorrelation estimates and thermalization diagnostics before interpreting long chains.
+- Use bootstrap or jackknife errors for correlators and effective-mass diagnostics.
 - Explore beta and lattice-size dependence.
+- Move from smoke-test lattices to larger volumes only after baseline diagnostics are stable.
 
 ## Phase 3: Glueball-Like Correlators
 
@@ -22,6 +23,7 @@
 - Improve connected correlator statistics.
 - Fit effective-mass plateaus with uncertainty estimates.
 - Compare finite-volume and finite-spacing behavior.
+- Require larger lattices, thermalization checks, autocorrelation estimates, and uncertainty analysis before treating an effective-mass plateau as physically meaningful.
 
 ## Phase 4: RQM Interpretation Layer
 
@@ -35,6 +37,7 @@
 - Explore anchor terms only in explicitly labeled nonstandard experiments.
 - Compare deformed dynamics against the baseline without merging claims.
 - Treat these experiments as hypothesis generators, not theorem evidence.
+- Do not merge anchor terms into the baseline Wilson action.
 
 ## Phase 6: Proof Roadmap
 

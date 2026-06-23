@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from yang_mills_gap.correlators import temporal_correlator
-from yang_mills_gap.effective_mass import effective_mass
+from yang_mills_gap.effective_mass import effective_mass, effective_mass_cosh
 
 
 def main() -> None:
@@ -30,20 +30,25 @@ def main() -> None:
 
     samples = np.load(sample_path)
     corr = temporal_correlator(samples, connected=True)
-    mass = effective_mass(corr)
+    mass_log = effective_mass(corr)
+    mass_cosh = effective_mass_cosh(corr)
+    padded_log = np.full_like(mass_cosh, np.nan)
+    padded_log[: mass_log.size] = mass_log
     np.savetxt(
         data_dir / "exp_005_effective_mass_plateau.csv",
-        np.column_stack([np.arange(mass.size), mass]),
+        np.column_stack([np.arange(mass_cosh.size), padded_log, mass_cosh]),
         delimiter=",",
-        header="t,m_eff",
+        header="t,m_eff_log,m_eff_cosh",
         comments="",
     )
 
     fig, ax = plt.subplots(figsize=(7, 4))
-    ax.plot(np.arange(mass.size), mass, marker="o")
+    ax.plot(np.arange(padded_log.size), padded_log, marker="o", label="log")
+    ax.plot(np.arange(mass_cosh.size), mass_cosh, marker="s", label="cosh")
     ax.set_xlabel("t")
     ax.set_ylabel("m_eff(t)")
     ax.set_title("Effective-mass diagnostic")
+    ax.legend()
     fig.tight_layout()
     fig.savefig(fig_dir / "exp_005_effective_mass_plateau.png", dpi=160)
 

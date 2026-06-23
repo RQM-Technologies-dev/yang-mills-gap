@@ -20,6 +20,14 @@ The first phase implements standard SU(2) Wilson lattice Yang-Mills without RQM 
 
 RQM enters as an interpretation layer. Anchor deformation experiments are nonstandard and are separated from the baseline implementation.
 
+## Numerical Status
+
+The current experiments are tiny finite-lattice sanity diagnostics. They are meant to exercise the code paths and generate inspectable plots, not to produce meaningful mass-gap estimates.
+
+Meaningful mass-gap estimates would require larger lattices, thermalization checks, autocorrelation estimates, uncertainty analysis, and systematic finite-volume and finite-spacing studies. The package now includes local staple-based action differences, a faster local Metropolis sweep, log and cosh effective-mass estimators, and bootstrap/jackknife correlator uncertainty helpers to support that later work.
+
+The anchor deformation example remains nonstandard and separate from the baseline Wilson action.
+
 ## Quick Start
 
 ```bash
@@ -50,11 +58,11 @@ src/yang_mills_gap/
   lattice.py           Periodic 4D lattice helper
   gauge_field.py       Unit-quaternion link field U[x, y, z, t, mu]
   plaquette.py         Plaquette holonomy and closure defect
-  wilson_action.py     Standard Wilson action
+  wilson_action.py     Standard Wilson action and local staple utilities
   observables.py       Average plaquette, closure defect, glueball-like O(t)
-  monte_carlo.py       Basic Metropolis updates preserving unit norm
-  correlators.py       Connected temporal correlator
-  effective_mass.py    m_eff(t) = log(C(t) / C(t+1))
+  monte_carlo.py       Full-action reference and local-action Metropolis sweeps
+  correlators.py       Connected temporal correlator plus bootstrap/jackknife helpers
+  effective_mass.py    Log and cosh effective-mass estimators
 ```
 
 Read `CLAIM_DISCIPLINE.md` before using this repository for public claims or summaries.

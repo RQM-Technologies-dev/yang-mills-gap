@@ -14,7 +14,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from yang_mills_gap.correlators import temporal_correlator
+from yang_mills_gap.correlators import bootstrap_correlator, temporal_correlator
 from yang_mills_gap.gauge_field import GaugeField
 from yang_mills_gap.lattice import Lattice4D
 from yang_mills_gap.monte_carlo import metropolis_sweep
@@ -37,17 +37,23 @@ def main() -> None:
 
     sample_array = np.vstack(samples)
     connected = temporal_correlator(sample_array, connected=True)
+    _, bootstrap_stderr, _ = bootstrap_correlator(
+        sample_array,
+        n_bootstrap=100,
+        connected=True,
+        seed=4404,
+    )
     np.save(data_dir / "exp_004_glueball_samples.npy", sample_array)
     np.savetxt(
         data_dir / "exp_004_glueball_correlator.csv",
-        np.column_stack([np.arange(connected.size), connected]),
+        np.column_stack([np.arange(connected.size), connected, bootstrap_stderr]),
         delimiter=",",
-        header="dt,connected_C",
+        header="dt,connected_C,bootstrap_stderr",
         comments="",
     )
 
     fig, ax = plt.subplots(figsize=(7, 4))
-    ax.plot(np.arange(connected.size), connected, marker="o")
+    ax.errorbar(np.arange(connected.size), connected, yerr=bootstrap_stderr, marker="o", capsize=3)
     ax.set_xlabel("temporal separation dt")
     ax.set_ylabel("connected C(dt)")
     ax.set_title("Glueball-like connected correlator")
