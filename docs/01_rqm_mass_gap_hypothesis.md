@@ -1,21 +1,15 @@
 # RQM Mass Gap Hypothesis
 
-Working hypothesis:
+Working thesis:
 
-> "The Yang–Mills mass gap may be interpreted in RQM as the lowest nonzero energy of a closed, gauge-invariant non-abelian curvature resonance."
+> "The Yang-Mills mass gap may be interpreted in Resonant Quantum Mechanics as the lowest nonzero energy of a closed, gauge-invariant non-abelian curvature resonance."
 
-In this language:
+In this repository, the interpretation is organized as follows:
 
-- "curvature" corresponds first to standard plaquette holonomy in lattice Yang-Mills,
-- "closed" means gauge-invariant and not dependent on an open color frame,
-- "resonance" is an interpretive term for a persistent gauge-invariant excitation,
-- "lowest nonzero energy" would need to correspond to a rigorously defined spectral gap.
+- plaquette holonomy models non-abelian curvature closure,
+- closure defect measures local deviation from identity holonomy,
+- Wilson action models closure cost in the standard lattice theory,
+- spatial plaquette operators model closed gauge-invariant curvature probes,
+- connected correlators and effective masses test finite-lattice resonance diagnostics.
 
-This is not a proof. It is a proposed dictionary between RQM language and standard gauge-invariant Yang-Mills observables.
-
-The baseline code does not modify Yang-Mills theory. It computes standard Wilson-action observables. RQM-inspired terms become legitimate research objects only after they are either:
-
-1. identified with standard gauge-invariant observables, or
-2. explicitly labeled as nonstandard deformations.
-
-The main research discipline is to avoid treating vocabulary as derivation.
+This is an interpretation hypothesis. It is not a mathematical proof of the continuum Yang-Mills mass gap.

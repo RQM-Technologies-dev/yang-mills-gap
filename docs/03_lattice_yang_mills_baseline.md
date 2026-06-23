@@ -1,8 +1,6 @@
 # Lattice Yang-Mills Baseline
 
-The baseline model is standard SU(2) Wilson lattice Yang-Mills on a periodic four-dimensional lattice.
-
-The lattice coordinate order is:
+The baseline is standard SU(2) Wilson lattice Yang-Mills on a periodic four-dimensional lattice with coordinate order:
 
 ```text
 (x, y, z, t)
@@ -14,27 +12,7 @@ Each link variable is a unit quaternion:
 U[x, y, z, t, mu]
 ```
 
-where `mu` is one of the four lattice directions.
-
-For directions `mu != nu`, the plaquette is:
-
-```text
-U_mu(x) U_nu(x + mu) U_mu^-1(x + nu) U_nu^-1(x)
-```
-
-The closure defect is:
-
-```text
-D_p = 1 - scalar_part(U_p)
-```
-
-The Wilson action is:
-
-```text
-S = beta * sum_p D_p
-```
-
-No RQM anchor term, closure penalty, or deformation is present in the baseline action.
+where `mu` is in `0..3`.
 
 Local gauge transformations act as:
 
@@ -42,4 +20,4 @@ Local gauge transformations act as:
 U_mu(x) -> g(x) U_mu(x) g^-1(x + mu)
 ```
 
-Under this transformation, the plaquette holonomy transforms by conjugation at its base point. Its scalar part is invariant. The tests verify this finite-lattice property.
+The baseline implementation preserves unit norm and tests gauge invariance of plaquette scalar parts. RQM deformation terms are not part of this baseline.

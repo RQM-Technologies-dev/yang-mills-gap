@@ -100,7 +100,7 @@ def scalar_part(q: ArrayLike) -> QuaternionArray:
     return as_quaternion(q)[..., 0]
 
 
-def near_identity(
+def near_identity_random_unit_quaternion(
     step_size: float,
     rng: np.random.Generator | None = None,
 ) -> QuaternionArray:
@@ -125,3 +125,12 @@ def near_identity(
         [np.cos(half_angle), *(np.sin(half_angle) * axis)],
         dtype=float,
     )
+
+
+def near_identity(
+    step_size: float,
+    rng: np.random.Generator | None = None,
+) -> QuaternionArray:
+    """Backward-compatible alias for ``near_identity_random_unit_quaternion``."""
+
+    return near_identity_random_unit_quaternion(step_size, rng)

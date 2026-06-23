@@ -1,46 +1,43 @@
 # Roadmap
 
-## Phase 1: Standard SU(2) Baseline
+## Phase 1: Standard SU(2) Lattice Baseline
 
-- Implement scalar-first unit-quaternion SU(2) operations.
-- Build a 4D periodic lattice and unit-quaternion link fields.
-- Compute plaquettes, closure defects, Wilson action, and gauge-invariant observables.
-- Add a clear but simple Metropolis update path.
-- Validate quaternion identities, identity-field plaquettes, Wilson action consistency, and gauge invariance of plaquette scalar parts.
+- Implement NumPy unit-quaternion utilities.
+- Build a periodic 4D lattice helper.
+- Store SU(2) gauge fields as unit-quaternion link variables.
+- Compute plaquette holonomy, closure defect, and Wilson action.
+- Add gauge-invariant observables and simple Metropolis updates.
+- Verify quaternion identities, plaquette identity behavior, gauge invariance, and nonnegative Wilson action.
 
-Status: implemented as the initial research scaffold.
+## Phase 2: Baseline Numerical Quality
 
-## Phase 2: Numerical Baseline Quality
-
-- Replace full-action Metropolis proposals with local staple-based action differences.
+- Replace full-action Metropolis proposals with local staple action differences.
 - Add autocorrelation estimates and thermalization diagnostics.
-- Expand to larger lattices and ensembles.
-- Add jackknife or bootstrap errors for correlators and effective masses.
-- Separate connected and unconnected glueball operators in analysis scripts.
+- Add bootstrap or jackknife errors for correlators.
+- Explore beta and lattice-size dependence.
 
-## Phase 3: Gauge-Invariant Resonance Diagnostics
+## Phase 3: Glueball-Like Correlators
 
-- Study closure-defect distributions and spatial-plaquette operator spectra.
-- Compare Wilson loops and glueball-like correlators across beta values and lattice sizes.
-- Track whether candidate resonance language can be mapped to standard gauge-invariant observables without modifying the action.
+- Refine spatial plaquette operators.
+- Improve connected correlator statistics.
+- Fit effective-mass plateaus with uncertainty estimates.
+- Compare finite-volume and finite-spacing behavior.
 
 ## Phase 4: RQM Interpretation Layer
 
-- Formalize the interpretive statement:
+- Map plaquette holonomy to curvature closure.
+- Map Wilson action to closure cost.
+- Interpret the mass-gap target as the lowest nonzero closed gauge-invariant curvature resonance.
+- Keep the interpretation separate from deformed dynamics.
 
-  > "The Yang–Mills mass gap may be interpreted in RQM as the lowest nonzero energy of a closed, gauge-invariant non-abelian curvature resonance."
+## Phase 5: Nonstandard Anchor Deformations
 
-- Keep this as an interpretation of standard gauge-invariant structures unless a script or document explicitly states otherwise.
-- Identify which concepts correspond to standard lattice objects and which are new RQM vocabulary.
+- Explore anchor terms only in explicitly labeled nonstandard experiments.
+- Compare deformed dynamics against the baseline without merging claims.
+- Treat these experiments as hypothesis generators, not theorem evidence.
 
-## Phase 5: Nonstandard Anchor Experiments
+## Phase 6: Proof Roadmap
 
-- Explore RQM-inspired anchor or closure deformations only in explicitly labeled scripts.
-- Never mix deformed-action outputs with baseline Wilson-action claims.
-- Treat deformations as hypothesis generators, not as proof evidence for the Clay problem.
-
-## Phase 6: Proof Roadmap Work
-
-- State what would be needed to connect lattice observations to continuum Yang-Mills theory.
-- Track reflection positivity, transfer matrix, continuum limit, infinite-volume limit, gauge invariance, and operator definitions.
-- Document gaps instead of smoothing them over.
+- Document what would be required for a continuum construction.
+- Track the gaps between finite-lattice numerics and rigorous spectral claims.
+- Keep proof-oriented language conditional until each analytical step is supplied.

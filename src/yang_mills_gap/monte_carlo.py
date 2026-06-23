@@ -8,8 +8,8 @@ import numpy as np
 
 from .gauge_field import GaugeField
 from .lattice import Lattice4D
-from .observables import average_plaquette
-from .quaternions import multiply, near_identity, normalize
+from .observables import average_closure_defect, average_plaquette
+from .quaternions import multiply, near_identity_random_unit_quaternion, normalize
 from .wilson_action import wilson_action
 
 
@@ -30,7 +30,7 @@ def propose_link(
 ) -> np.ndarray:
     """Left-multiply a link by a small random SU(2) element."""
 
-    proposal = multiply(near_identity(step_size, rng), current_link)
+    proposal = multiply(near_identity_random_unit_quaternion(step_size, rng), current_link)
     return normalize(proposal)
 
 
@@ -102,6 +102,7 @@ def run_metropolis(
                     "sweep": float(sweep),
                     "action": wilson_action(field, beta),
                     "average_plaquette": average_plaquette(field),
+                    "average_closure_defect": average_closure_defect(field),
                     "acceptance_rate": stats.acceptance_rate,
                 }
             )

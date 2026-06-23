@@ -7,7 +7,7 @@ from numpy.typing import NDArray
 
 from .gauge_field import GaugeField
 from .lattice import Site
-from .plaquette import all_plaquette_scalars, plaquette_scalar, spatial_direction_pairs
+from .plaquette import all_closure_defects, all_plaquette_scalars, plaquette_scalar, spatial_direction_pairs
 from .quaternions import IDENTITY, inverse, multiply, scalar_part
 
 
@@ -15,6 +15,12 @@ def average_plaquette(field: GaugeField) -> float:
     """Mean scalar part of all oriented ``mu < nu`` plaquettes."""
 
     return float(np.mean(all_plaquette_scalars(field)))
+
+
+def average_closure_defect(field: GaugeField) -> float:
+    """Mean ``D_p = 1 - scalar_part(U_p)`` over all oriented ``mu < nu`` plaquettes."""
+
+    return float(np.mean(all_closure_defects(field)))
 
 
 def wilson_loop_scalar(

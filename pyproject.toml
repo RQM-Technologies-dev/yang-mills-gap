@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "rqm-yang-mills"
+name = "yang-mills-gap"
 version = "0.1.0"
 description = "Exploratory SU(2) lattice Yang-Mills research code in unit-quaternion coordinates."
 readme = "README.md"
@@ -23,7 +23,7 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/rqm_yang_mills"]
+packages = ["src/yang_mills_gap"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
