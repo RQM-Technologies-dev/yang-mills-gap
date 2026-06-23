@@ -30,6 +30,17 @@ Effective-mass plots from the current tiny runs should not be interpreted withou
 
 The anchor deformation example remains nonstandard and separate from the baseline Wilson action.
 
+## Diagnostic Run Packets
+
+The first reproducibility layer writes diagnostic run packets under `outputs/run_packets/`. A packet contains:
+
+- `config.json` with the exact tiny-run configuration,
+- `observables.csv` with measured Wilson-action observables,
+- `diagnostics.json` with running means, autocorrelation, integrated autocorrelation time, and thermalization window summaries,
+- `plots/` with diagnostic figures.
+
+Use packets as the default container for future finite-lattice sanity diagnostics. No effective-mass plot should be interpreted without the accompanying diagnostics packet.
+
 ## Quick Start
 
 ```bash
@@ -49,6 +60,7 @@ python experiments/exp_004_glueball_correlator.py
 python experiments/exp_005_effective_mass_plateau.py
 python experiments/exp_006_rqm_anchor_deformation_nonstandard.py
 python experiments/exp_007_full_vs_local_metropolis_sanity.py
+python experiments/exp_008_diagnostic_run_packet.py
 ```
 
 Figures are written to `outputs/figures`. Numerical data is written to `outputs/data`.
@@ -67,6 +79,8 @@ src/yang_mills_gap/
   correlators.py       Connected temporal correlator plus bootstrap/jackknife helpers
   effective_mass.py    Log and cosh effective-mass estimators
   diagnostics.py       Running means, autocorrelation, thermalization summaries
+  experiment_driver.py Shared tiny-chain diagnostic driver
+  run_packet.py        Reproducible diagnostic packet writers
 ```
 
 Read `CLAIM_DISCIPLINE.md` before using this repository for public claims or summaries.

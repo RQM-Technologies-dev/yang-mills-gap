@@ -4,5 +4,6 @@ __pycache__/
 .venv/
 outputs/data/*
 outputs/figures/*
+outputs/run_packets/*
 !outputs/data/.gitkeep
 !outputs/figures/.gitkeep

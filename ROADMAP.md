@@ -15,6 +15,7 @@
 - Add autocorrelation estimates and thermalization diagnostics before interpreting long chains.
 - Use bootstrap or jackknife errors for correlators and effective-mass diagnostics.
 - Compare full-action and local-action Metropolis paths on tiny lattices as an implementation sanity check.
+- Wrap finite-lattice sanity runs in diagnostic packets with config, observables, diagnostics, and plots.
 - Explore beta and lattice-size dependence.
 - Move from smoke-test lattices to larger volumes only after baseline diagnostics are stable.
 
@@ -26,6 +27,7 @@
 - Compare finite-volume and finite-spacing behavior.
 - Require larger lattices, thermalization checks, autocorrelation estimates, and uncertainty analysis before treating an effective-mass plateau as physically meaningful.
 - Treat effective-mass plots as diagnostics only until thermalization, autocorrelation, and uncertainty checks are reported beside them.
+- Require an accompanying diagnostic packet before comparing effective-mass plots across runs.
 
 ## Phase 4: RQM Interpretation Layer
 
