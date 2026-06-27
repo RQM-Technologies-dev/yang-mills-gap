@@ -1,8 +1,7 @@
-"""Exploratory SU(2) lattice Yang-Mills tools in unit-quaternion coordinates.
+"""Finite-lattice SU(2) Wilson-action tools for the proof program.
 
-The baseline modules implement standard SU(2) lattice Yang-Mills numerics.
-RQM-inspired anchor or closure deformations are experimental and live outside
-the baseline package unless explicitly marked otherwise.
+The baseline modules support curvature-closure proof scaffolding. They do not
+claim a continuum Yang-Mills construction or a completed mass-gap proof.
 """
 
 from .gauge_field import GaugeField

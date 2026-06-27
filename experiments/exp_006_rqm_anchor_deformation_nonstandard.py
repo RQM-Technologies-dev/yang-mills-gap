@@ -1,8 +1,8 @@
-"""Nonstandard RQM anchor-deformation comparison.
+"""Quarantined nonstandard anchor-deformation comparison.
 
-This script changes the baseline action by adding an exploratory anchor term.
+This script changes the baseline action by adding a nonstandard anchor term.
 It is not standard SU(2) Wilson lattice Yang-Mills and is not evidence for a
-Clay-problem result.
+Clay-problem result. It is not part of the proof route.
 """
 
 from __future__ import annotations
@@ -104,7 +104,7 @@ def main() -> None:
                 }
             )
         for record in deformed_records:
-            writer.writerow({"kind": "rqm_anchor_deformed_nonstandard", **record})
+            writer.writerow({"kind": "anchor_deformed_nonstandard", **record})
 
     fig, ax = plt.subplots(figsize=(7, 4))
     ax.plot(
@@ -122,7 +122,7 @@ def main() -> None:
     ax.axhline(target_defect, color="black", linestyle="--", linewidth=1.0, label="anchor target")
     ax.set_xlabel("sweep")
     ax.set_ylabel("mean D_p")
-    ax.set_title("Nonstandard RQM anchor-deformation comparison")
+    ax.set_title("Nonstandard anchor-deformation comparison")
     ax.legend()
     fig.tight_layout()
     fig.savefig(fig_dir / "exp_006_rqm_anchor_deformation_nonstandard.png", dpi=160)

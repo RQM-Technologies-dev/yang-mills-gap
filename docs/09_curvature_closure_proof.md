@@ -2,7 +2,8 @@
 
 ## Status
 
-This document records the proposed RQM/QSG proof thesis and proof architecture.
+This document records the proposed curvature-closure proof thesis and proof
+architecture.
 It is a proof draft and research program, not a completed Clay Yang-Mills
 existence and mass-gap proof.
 
@@ -47,7 +48,7 @@ Equivalently, for every physical state `psi in H_phys` with `psi` orthogonal to
 <psi, H psi> >= Delta ||psi||^2.
 ```
 
-## RQM Interpretation
+## Interpretation Layer
 
 The mass gap `Delta` is the minimum energy required for nonzero Yang-Mills
 curvature to close into a stable gauge-invariant resonance.
@@ -113,7 +114,7 @@ vacuum with energy tending to zero.
 In physical language: a nontrivial closed curvature resonance cannot be made
 arbitrarily soft.
 
-In RQM language: closure has a first nonzero resonance threshold.
+In the interpretation layer: closure has a first nonzero resonance threshold.
 
 ## Proof Burden
 
@@ -135,7 +136,7 @@ Spec(H | H_phys) intersect (0, Delta) = empty
 ```
 
 for some `Delta > 0`, rather than infer it from a finite-lattice effective-mass
-plot or from RQM terminology alone.
+plot or from terminology alone.
 
 ## Finite-Lattice Bridge
 

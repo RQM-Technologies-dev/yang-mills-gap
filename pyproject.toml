@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "yang-mills-gap"
 version = "0.1.0"
-description = "Exploratory SU(2) lattice Yang-Mills research code in unit-quaternion coordinates."
+description = "Finite-lattice SU(2) Wilson-action diagnostics for a curvature-closure Yang-Mills proof program."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }

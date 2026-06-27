@@ -1,4 +1,4 @@
-"""Basic finite-chain diagnostics for exploratory lattice runs."""
+"""Basic finite-chain diagnostics for Wilson-action proof scaffolding."""
 
 from __future__ import annotations
 

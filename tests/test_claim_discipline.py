@@ -13,13 +13,12 @@ def _read(relative_path: str) -> str:
 
 def test_main_roadmap_surfaces_keep_finite_lattice_claim_boundary() -> None:
     surfaces = {
-        "README.md": ("not a Clay", "not a continuum proof"),
-        "ROADMAP.md": ("non-proof diagnostics", "finite-lattice diagnostics"),
-        "docs/08_closure_resonance_roadmap.md": ("not a Clay", "finite-lattice diagnostic"),
+        "README.md": ("not a completed Clay proof", "finite-lattice diagnostics"),
+        "ROADMAP.md": ("proof-oriented", "finite-lattice outputs"),
         "docs/09_curvature_closure_proof.md": ("proof draft and research program", "not a completed Clay"),
         "docs/10_closure_coercivity_lemma.md": ("not a completed proof", "prevent circularity"),
-        "docs/finite_lattice_claim_boundary.md": ("not a continuum construction", "do not by themselves establish"),
         "docs/07_proof_roadmap.md": ("computational sandbox, not a proof", "Gap Register"),
+        "CLAIM_DISCIPLINE.md": ("Forbidden Claims", "not a completed Clay proof"),
     }
 
     for relative_path, required_phrases in surfaces.items():
@@ -32,10 +31,9 @@ def test_public_research_surfaces_do_not_use_result_claim_language() -> None:
     surfaces = [
         "README.md",
         "ROADMAP.md",
-        "docs/08_closure_resonance_roadmap.md",
         "docs/09_curvature_closure_proof.md",
         "docs/10_closure_coercivity_lemma.md",
-        "docs/finite_lattice_claim_boundary.md",
+        "docs/07_proof_roadmap.md",
     ]
     overclaims = (
         "establishes the Clay result",
@@ -60,9 +58,36 @@ def test_packet_claim_boundaries_remain_diagnostic_only() -> None:
     assert "not proof" in CANDIDATE_CLAIM_BOUNDARY
 
 
-def test_anchor_deformation_doc_keeps_nonstandard_boundary() -> None:
-    text = _read("docs/06_rqm_anchor_deformations_nonstandard.md")
+def test_no_links_to_removed_fragment_docs() -> None:
+    removed = (
+        "docs/00_problem_statement.md",
+        "docs/01_rqm_mass_gap_hypothesis.md",
+        "docs/02_su2_quaternionic_representation.md",
+        "docs/03_lattice_yang_mills_baseline.md",
+        "docs/04_closure_defect_and_wilson_action.md",
+        "docs/05_glueball_correlator_mass_gap.md",
+        "docs/06_rqm_anchor_deformations_nonstandard.md",
+        "docs/08_closure_resonance_roadmap.md",
+        "docs/finite_lattice_claim_boundary.md",
+    )
+    surfaces = (
+        "README.md",
+        "ROADMAP.md",
+        "CLAIM_DISCIPLINE.md",
+        "docs/07_proof_roadmap.md",
+        "docs/09_curvature_closure_proof.md",
+        "docs/10_closure_coercivity_lemma.md",
+    )
 
-    assert "not part of standard SU(2) Wilson lattice Yang-Mills" in text
-    assert "must be labeled nonstandard" in text
-    assert "not evidence for a standard Yang-Mills mass-gap theorem" in text
+    for relative_path in surfaces:
+        text = _read(relative_path)
+        for removed_path in removed:
+            assert removed_path not in text
+
+
+def test_anchor_deformation_code_keeps_nonstandard_boundary() -> None:
+    text = _read("experiments/exp_006_rqm_anchor_deformation_nonstandard.py")
+
+    assert "Quarantined nonstandard" in text
+    assert "not part of the proof route" in text
+    assert "not evidence" in text

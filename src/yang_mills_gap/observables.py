@@ -1,4 +1,4 @@
-"""Gauge-invariant observables for small exploratory lattice runs."""
+"""Gauge-invariant observables for finite-lattice proof scaffolding."""
 
 from __future__ import annotations
 

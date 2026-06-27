@@ -1,51 +1,63 @@
 # Claim Discipline
 
-This is an exploratory research repository. It is not a Clay Yang-Mills mass-gap result.
+This repository is a proof program, not a completed Clay Yang-Mills proof.
 
-## Use These Verbs
+## Allowed Claims
 
-- explores
-- models
-- interprets
-- tests
-- compares
-- suggests
+- The baseline code implements finite-lattice SU(2) Wilson-action diagnostics in
+  unit-quaternion coordinates.
+- Plaquette holonomy, closure defect, Wilson action, Wilson loops, correlators,
+  effective masses, quality gates, and candidate assessments are proof
+  scaffolding.
+- Curvature closure is the organizing proof target.
+- Closure energy is not yet a theorem-level object; it is a non-circular target
+  to be defined and proved.
+- Finite-lattice results may suggest continuum spectral targets.
 
-## Avoid Overclaiming Language
+## Forbidden Claims
+
+- This repo proves the Clay Yang-Mills problem.
+- A finite-lattice packet proves a mass gap.
+- An effective-mass plateau proves the continuum theorem.
+- RQM/QSG terminology proves the theorem.
+- Anchor-deformed output is evidence for standard Yang-Mills.
+- The closure-coercivity lemma has been proved.
+- Closure energy has already been shown to control Hamiltonian energy.
+
+## Required Wording
+
+Use:
+
+- proof target
+- proof program
+- finite-lattice diagnostic
+- proof scaffolding
+- interpretation layer
+- non-circular closure-energy target
+- not a completed Clay proof
+
+Avoid:
 
 - establishes the Clay result
 - derives the continuum theorem
 - settles the Millennium problem
-- finishes the mathematical program
+- completes the proof
 
-## Baseline Claim Boundary
+## Baseline Boundary
 
-The baseline implementation is standard SU(2) Wilson lattice Yang-Mills in unit-quaternion coordinates. It does not include an RQM anchor term, resonance constraint, or deformation.
+The proof route uses the standard SU(2) Wilson-action baseline. The baseline
+does not include anchor terms, resonance constraints, or deformation terms.
 
 Allowed baseline claims:
 
-- Unit quaternions model SU(2) link variables.
-- Plaquette holonomy models lattice curvature.
-- `D_p = 1 - scalar_part(U_p)` is the local closure defect used in the Wilson action.
+- Unit quaternions represent SU(2) link variables.
+- Plaquette holonomy is the lattice curvature object.
+- `D_p = 1 - scalar_part(U_p)` is the closure defect used in the Wilson action.
 - `S = beta * sum_p D_p` is the implemented Wilson action.
-- Plaquette scalar parts are invariant under local gauge transformations.
-- The included experiments are small finite-lattice diagnostics.
+- Plaquette and closed Wilson-loop scalar parts are gauge invariant.
 
-## RQM Interpretation Boundary
+## Nonstandard Boundary
 
-The thesis:
-
-> "The Yang-Mills mass gap may be interpreted in Resonant Quantum Mechanics as the lowest nonzero energy of a closed, gauge-invariant non-abelian curvature resonance."
-
-is an interpretation hypothesis. In this repository:
-
-- plaquette holonomy is interpreted as curvature closure,
-- Wilson action is interpreted as closure cost,
-- glueball-like correlators are used as gauge-invariant resonance diagnostics,
-- effective mass is treated as a finite-lattice diagnostic, not a theorem.
-
-## Nonstandard Deformation Boundary
-
-RQM anchor deformation experiments are nonstandard. They must remain separate from the baseline Yang-Mills implementation and must be described as exploratory deformations.
-
-Do not use anchor-deformed outputs as evidence for a standard Yang-Mills theorem.
+Nonstandard anchor deformations are not part of the proof route. They must
+remain quarantined from baseline diagnostics and cannot be used as evidence for
+the standard Yang-Mills theorem.

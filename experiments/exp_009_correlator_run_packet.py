@@ -1,7 +1,7 @@
 """Create a tiny correlator/effective-mass diagnostic run packet.
 
 This baseline Wilson-action packet is diagnostic only. It is not a Clay
-mass-gap result and does not use the nonstandard RQM anchor deformation.
+mass-gap result and does not use any nonstandard anchor deformation.
 """
 
 from __future__ import annotations

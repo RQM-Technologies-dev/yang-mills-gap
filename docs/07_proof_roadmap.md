@@ -11,9 +11,9 @@ It decomposes the core lemma into non-circular definitions of closure energy,
 vacuum isolation, and the comparison between closure energy and Hamiltonian
 energy.
 
-Finite-lattice experiments can organize intuition, test implementation
-discipline, and sharpen the RQM/QSG closure-resonance working hypothesis. They
-do not by themselves establish the continuum theorem.
+Finite-lattice experiments can organize implementation evidence, test
+discipline, and sharpen the curvature-closure proof target. They do not by
+themselves establish the continuum theorem.
 
 ## Current Role Of The Repository
 
@@ -25,8 +25,8 @@ standard SU(2) Wilson-action finite-lattice baseline auditable:
   effective-mass diagnostics,
 - packet-level closure-resonance candidate assessments with explicit failure
   reasons,
-- and claim-boundary checks that keep RQM/QSG interpretation separate from
-  standard Yang-Mills evidence.
+- and claim-boundary checks that keep interpretation separate from standard
+  Yang-Mills evidence.
 
 These are prerequisites for disciplined research. They are not a substitute
 for construction, spectral analysis, or a continuum limit.
@@ -69,8 +69,8 @@ The following should not be treated as proof evidence:
 - a plateau candidate without uncertainty, autocorrelation, and seed checks,
 - a beta/seed trend without volume and lattice-spacing controls,
 - an anchor-deformed run,
-- or an RQM/QSG interpretation statement without a corresponding standard
-  Yang-Mills object.
+- or an interpretation statement without a corresponding standard Yang-Mills
+  object.
 
 ## Advancement Standard
 
