@@ -6,6 +6,11 @@ The current proof draft is `docs/09_curvature_closure_proof.md`. It records the
 curvature-closure theorem target and the proof burden; it does not close the
 gaps listed below.
 
+The lower-level coercivity target is `docs/10_closure_coercivity_lemma.md`.
+It decomposes the core lemma into non-circular definitions of closure energy,
+vacuum isolation, and the comparison between closure energy and Hamiltonian
+energy.
+
 Finite-lattice experiments can organize intuition, test implementation
 discipline, and sharpen the RQM/QSG closure-resonance working hypothesis. They
 do not by themselves establish the continuum theorem.
@@ -37,6 +42,7 @@ A proof-oriented program would need to close at least these gaps:
 | Physical Hilbert space | Not supplied | Reflection positivity or another route to physical states |
 | Spectral formulation | Effective-mass diagnostics only | Transfer-matrix or Hamiltonian spectral control |
 | Positive lowest non-vacuum energy | Packet-level candidates only | Proof that the lowest non-vacuum gauge-invariant energy is strictly positive |
+| Closure coercivity | Proof target only | Non-circular closure energy, vacuum isolation, and Hamiltonian comparison |
 | Continuum limit | Not supplied | Controlled lattice-spacing limit |
 | Infinite-volume limit | Not supplied | Controlled thermodynamic limit |
 

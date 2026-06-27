@@ -16,6 +16,8 @@ def test_main_roadmap_surfaces_keep_finite_lattice_claim_boundary() -> None:
         "README.md": ("not a Clay", "not a continuum proof"),
         "ROADMAP.md": ("non-proof diagnostics", "finite-lattice diagnostics"),
         "docs/08_closure_resonance_roadmap.md": ("not a Clay", "finite-lattice diagnostic"),
+        "docs/09_curvature_closure_proof.md": ("proof draft and research program", "not a completed Clay"),
+        "docs/10_closure_coercivity_lemma.md": ("not a completed proof", "prevent circularity"),
         "docs/finite_lattice_claim_boundary.md": ("not a continuum construction", "do not by themselves establish"),
         "docs/07_proof_roadmap.md": ("computational sandbox, not a proof", "Gap Register"),
     }
@@ -31,6 +33,8 @@ def test_public_research_surfaces_do_not_use_result_claim_language() -> None:
         "README.md",
         "ROADMAP.md",
         "docs/08_closure_resonance_roadmap.md",
+        "docs/09_curvature_closure_proof.md",
+        "docs/10_closure_coercivity_lemma.md",
         "docs/finite_lattice_claim_boundary.md",
     ]
     overclaims = (

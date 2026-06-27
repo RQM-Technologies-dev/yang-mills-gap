@@ -119,4 +119,5 @@ src/yang_mills_gap/
 Read `CLAIM_DISCIPLINE.md` before using this repository for public claims or summaries.
 For proof-facing gaps, see `docs/07_proof_roadmap.md`.
 For the current curvature-closure proof draft, see `docs/09_curvature_closure_proof.md`.
+For the non-circular closure-coercivity target, see `docs/10_closure_coercivity_lemma.md`.
 The Clay problem statement PDF is stored at `docs/references/yangmills.pdf`.

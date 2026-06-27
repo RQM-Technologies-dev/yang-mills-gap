@@ -59,6 +59,7 @@
 - Document what would be required for a continuum construction.
 - Maintain `docs/07_proof_roadmap.md` as the proof-gap register separating finite-lattice diagnostics from missing analytical obligations.
 - Maintain `docs/09_curvature_closure_proof.md` as the current curvature-closure proof draft and proof-burden statement.
+- Maintain `docs/10_closure_coercivity_lemma.md` as the non-circular lower-level target beneath the mass-gap claim.
 - Track the gaps between finite-lattice numerics and rigorous spectral claims.
 - Keep proof-oriented language conditional until each analytical step is supplied.
 - Convert finite-lattice closure-resonance candidates into precise continuum/proof targets only after baseline numerical behavior is auditable.

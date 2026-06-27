@@ -10,6 +10,12 @@ The core mathematical burden is the curvature-closure coercivity lemma: no
 sequence of non-vacuum gauge-invariant curvature states can approach the vacuum
 with energy tending to zero.
 
+That lemma is close to the mass-gap statement. The next required refinement is
+to prove a lower-level structural statement: the vacuum closure class is isolated
+from the first nontrivial gauge-invariant curvature-closure class, and the
+corresponding closure energy controls Hamiltonian energy after reconstruction.
+See `docs/10_closure_coercivity_lemma.md`.
+
 ## Main Thesis
 
 Classical Yang-Mills admits massless non-abelian gauge waves.
@@ -63,12 +69,34 @@ The mass gap is the first nonzero closure energy.
    vacuum, Hamiltonian, momentum operators, and gauge-invariant local quantum
    fields.
 
-4. Prove the curvature-closure coercivity lemma:
+4. Define a gauge-invariant curvature-closure functional independently of the
+   Hamiltonian spectral gap. On the lattice this begins as Wilson closure cost;
+   in the continuum target it must become a renormalized gauge-invariant
+   closure energy for curvature-state classes.
+
+5. Prove vacuum isolation in the gauge-invariant curvature-closure topology:
+
+   The vacuum closure class is separated from the first nontrivial physical
+   closure class by a strictly positive closure threshold.
+
+6. Prove the curvature-closure coercivity lemma:
 
    Every non-vacuum gauge-invariant curvature state has closure energy bounded
    below by a universal positive constant.
 
-5. Prove exponential clustering for connected gauge-invariant curvature
+7. Prove that closure coercivity controls Hamiltonian energy after
+   Osterwalder-Schrader reconstruction:
+
+   ```text
+   E_closure(psi) >= epsilon > 0
+     -> <psi, H psi> >= Delta ||psi||^2
+   ```
+
+8. Conclude by the spectral theorem that the Hamiltonian has no physical
+   spectrum in `(0, Delta)`.
+
+9. Derive, or separately identify as an equivalent diagnostic under the needed
+   hypotheses, exponential clustering for connected gauge-invariant curvature
    correlators:
 
    ```text
@@ -76,9 +104,6 @@ The mass gap is the first nonzero closure energy.
    ```
 
    for all suitable gauge-invariant curvature operators `O`.
-
-6. Conclude by the spectral theorem that the Hamiltonian has no physical
-   spectrum in `(0, Delta)`.
 
 ## Core Lemma
 
@@ -96,6 +121,12 @@ The proof architecture is sharp because it isolates the missing step. The
 coercivity lemma cannot be assumed as a definition of mass gap; it must be
 derived from the constructed Yang-Mills measure, reflection positivity, the
 gauge-invariant observable algebra, and the reconstructed Hamiltonian.
+
+The non-circular version requires three intermediate statements:
+
+1. curvature closure energy is defined without reference to the Hamiltonian gap,
+2. the vacuum is isolated in that closure-energy topology,
+3. closure energy gives a lower bound for reconstructed Hamiltonian energy.
 
 Equivalently, one must prove:
 
