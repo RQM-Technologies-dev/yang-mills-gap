@@ -2,6 +2,10 @@
 
 This repository is a computational sandbox, not a proof.
 
+The current proof draft is `docs/09_curvature_closure_proof.md`. It records the
+curvature-closure theorem target and the proof burden; it does not close the
+gaps listed below.
+
 Finite-lattice experiments can organize intuition, test implementation
 discipline, and sharpen the RQM/QSG closure-resonance working hypothesis. They
 do not by themselves establish the continuum theorem.
