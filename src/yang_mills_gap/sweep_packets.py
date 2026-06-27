@@ -8,6 +8,13 @@ from typing import Any, Iterable
 
 import numpy as np
 
+from .baseline_contract import (
+    BASELINE_CLAIM_BOUNDARY,
+    BASELINE_RESEARCH_OBJECTIVE,
+    baseline_metadata,
+    validate_baseline_operator,
+    validate_baseline_sweep_config,
+)
 from .gauge_field import GaugeField
 from .lattice import Lattice4D
 from .monte_carlo import metropolis_sweep_local
@@ -18,8 +25,8 @@ from .spectroscopy_packet import write_correlator_packet
 from .wilson_action import wilson_action
 
 
-DEFAULT_RESEARCH_OBJECTIVE = "build auditable finite-lattice diagnostics for the closure-resonance working hypothesis"
-DEFAULT_CLAIM_BOUNDARY = "finite-lattice diagnostic only; not a mass-gap estimate"
+DEFAULT_RESEARCH_OBJECTIVE = BASELINE_RESEARCH_OBJECTIVE
+DEFAULT_CLAIM_BOUNDARY = BASELINE_CLAIM_BOUNDARY
 
 
 def create_sweep_dir(base_dir: str | Path, sweep_name: str) -> Path:
@@ -51,6 +58,7 @@ def build_sweep_config(
     hot_start: bool = False,
     n_bootstrap: int = 100,
     mean_mode: str = "global",
+    glueball_operator: str = "spatial_plaquette",
 ) -> dict[str, Any]:
     """Build a serializable beta/seed sweep configuration."""
 
@@ -68,11 +76,11 @@ def build_sweep_config(
         raise ValueError("step_size must be positive")
     if int(n_bootstrap) <= 0:
         raise ValueError("n_bootstrap must be positive")
+    operator = validate_baseline_operator(glueball_operator)
+    metadata = baseline_metadata(glueball_operator=operator)
 
-    return {
+    config = {
         "label": "tiny finite-lattice beta/seed correlator packet sweep",
-        "research_objective": DEFAULT_RESEARCH_OBJECTIVE,
-        "claim_boundary": DEFAULT_CLAIM_BOUNDARY,
         "betas": beta_values,
         "seeds": seed_values,
         "lattice_shape": tuple(lattice_shape),
@@ -84,8 +92,10 @@ def build_sweep_config(
         "hot_start": bool(hot_start),
         "n_bootstrap": int(n_bootstrap),
         "mean_mode": str(mean_mode),
-        "baseline": "standard SU(2) Wilson action only",
+        **metadata,
     }
+    validate_baseline_sweep_config(config)
+    return config
 
 
 def collect_correlator_chain(config: dict[str, Any], *, beta: float, seed: int) -> tuple[list[dict[str, float]], np.ndarray]:
@@ -98,6 +108,9 @@ def collect_correlator_chain(config: dict[str, Any], *, beta: float, seed: int) 
     field = GaugeField.random(lattice, rng) if config.get("hot_start", False) else GaugeField.cold(lattice)
     records: list[dict[str, float]] = []
     samples: list[np.ndarray] = []
+    glueball_operator = str(config.get("glueball_operator", "spatial_plaquette"))
+    validate_baseline_sweep_config(config)
+    validate_baseline_operator(glueball_operator)
     for sweep in range(1, int(config["n_sweeps"]) + 1):
         stats = metropolis_sweep_local(field, beta, step_size=float(config["step_size"]), rng=rng)
         if sweep > int(config["thermalization"]) and (sweep - int(config["thermalization"])) % int(config["measure_every"]) == 0:
@@ -110,7 +123,7 @@ def collect_correlator_chain(config: dict[str, Any], *, beta: float, seed: int) 
                     "acceptance_rate": stats.acceptance_rate,
                 }
             )
-            samples.append(glueball_timeseries(field))
+            samples.append(glueball_timeseries(field, operator=glueball_operator))
     if not records:
         raise ValueError("chain produced no measurements")
     return records, np.vstack(samples)
@@ -135,6 +148,7 @@ def make_sweep_summary_record(beta: float, seed: int, packet_dir: str | Path, pa
 def run_beta_seed_sweep(sweep_dir: str | Path, config: dict[str, Any]) -> dict[str, Any]:
     """Run a beta/seed sweep and write sweep-level artifacts."""
 
+    validate_baseline_sweep_config(config)
     root = Path(sweep_dir)
     packets_dir = root / "packets"
     packets_dir.mkdir(parents=True, exist_ok=True)
@@ -162,7 +176,9 @@ def run_beta_seed_sweep(sweep_dir: str | Path, config: dict[str, Any]) -> dict[s
                 "seed": int(seed),
                 "n_bootstrap": int(config["n_bootstrap"]),
                 "mean_mode": str(config["mean_mode"]),
+                "glueball_operator": str(config.get("glueball_operator", "spatial_plaquette")),
                 "baseline": config["baseline"],
+                "baseline_dynamics": config["baseline_dynamics"],
             }
             records, samples = collect_correlator_chain(config, beta=float(beta), seed=int(seed))
             packet_name = f"beta_{float(beta):.1f}_seed_{int(seed)}".replace(".", "p")

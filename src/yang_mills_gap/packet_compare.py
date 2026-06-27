@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import json
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -17,6 +18,12 @@ def _load_csv_rows(path: Path) -> list[dict[str, str]]:
         return []
     with path.open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
+
+
+def _load_json_file(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def _finite_float(value: Any) -> float | None:
@@ -116,6 +123,9 @@ def summarize_effective_mass_packet(run_dir: str | Path) -> dict[str, Any]:
     final_record = observables[-1] if observables else {}
     mass_rows = _load_csv_rows(root / "effective_mass.csv")
     correlator_rows = _load_csv_rows(root / "correlator.csv")
+    quality_gates = _load_json_file(root / "quality_gates.json")
+    quality_summary = quality_gates.get("summary", {})
+    candidate_assessment = _load_json_file(root / "candidate_assessment.json")
     min_log, n_log = _finite_stats(mass_rows, "m_eff_log")
     min_cosh, n_cosh = _finite_stats(mass_rows, "m_eff_cosh")
     log_stats = _extended_finite_stats(mass_rows, "m_eff_log")
@@ -132,6 +142,13 @@ def summarize_effective_mass_packet(run_dir: str | Path) -> dict[str, Any]:
         "lattice_shape": tuple(config.get("lattice_shape", ())),
         "n_measurements": summary.get("n_measurements", len(observables)),
         "mean_acceptance_rate": summary.get("mean_acceptance_rate", ""),
+        "quality_gate_status": summary.get("quality_gate_status", quality_summary.get("interpretation_status", "")),
+        "quality_gate_fail_count": summary.get("quality_gate_fail_count", quality_summary.get("n_fail", "")),
+        "quality_gate_warn_count": summary.get("quality_gate_warn_count", quality_summary.get("n_warn", "")),
+        "candidate_status": summary.get("candidate_status", candidate_assessment.get("candidate_status", "")),
+        "candidate_estimator": candidate_assessment.get("selected_estimator", ""),
+        "candidate_mean": candidate_assessment.get("candidate_mean", ""),
+        "candidate_relative_std": candidate_assessment.get("candidate_relative_std", ""),
         "final_average_plaquette": final_record.get("average_plaquette", ""),
         "final_average_closure_defect": final_record.get("average_closure_defect", ""),
         "min_finite_m_eff_log": min_log,

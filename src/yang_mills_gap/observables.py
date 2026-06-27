@@ -10,6 +10,14 @@ from .lattice import Site
 from .plaquette import all_closure_defects, all_plaquette_scalars, plaquette_scalar, spatial_direction_pairs
 from .quaternions import IDENTITY, inverse, multiply, scalar_part
 
+GLUEBALL_OPERATOR_SPATIAL_PLAQUETTE = "spatial_plaquette"
+GLUEBALL_OPERATOR_SPATIAL_WILSON_LOOPS = "spatial_wilson_loops"
+GLUEBALL_OPERATOR_MODES = (
+    GLUEBALL_OPERATOR_SPATIAL_PLAQUETTE,
+    GLUEBALL_OPERATOR_SPATIAL_WILSON_LOOPS,
+)
+DEFAULT_SPATIAL_WILSON_LOOP_EXTENTS = ((1, 1), (1, 2), (2, 1))
+
 
 def average_plaquette(field: GaugeField) -> float:
     """Mean scalar part of all oriented ``mu < nu`` plaquettes."""
@@ -73,10 +81,78 @@ def glueball_operator(field: GaugeField, t: int) -> float:
     return float(np.mean(values))
 
 
-def glueball_timeseries(field: GaugeField) -> NDArray[np.float64]:
-    """Return ``O(t)`` for every temporal slice."""
+def spatial_wilson_loop_operator(
+    field: GaugeField,
+    t: int,
+    extents: tuple[tuple[int, int], ...] = DEFAULT_SPATIAL_WILSON_LOOP_EXTENTS,
+) -> float:
+    """A simple improved operator averaging small spatial Wilson loops.
+
+    This is a baseline gauge-invariant measurement choice, not a deformation of
+    the Wilson action. It averages scalar parts of 1x1, 1x2, and 2x1 spatial
+    loops over each time slice.
+    """
+
+    lattice = field.lattice
+    t_mod = t % lattice.shape[3]
+    values: list[float] = []
+    for x in range(lattice.shape[0]):
+        for y in range(lattice.shape[1]):
+            for z in range(lattice.shape[2]):
+                site = (x, y, z, t_mod)
+                for mu, nu in spatial_direction_pairs():
+                    for extent_mu, extent_nu in extents:
+                        values.append(wilson_loop_scalar(field, site, mu, nu, extent_mu, extent_nu))
+    return float(np.mean(values))
+
+
+def spatial_wilson_loop_operator_basis(
+    field: GaugeField,
+    t: int,
+    extents: tuple[tuple[int, int], ...] = DEFAULT_SPATIAL_WILSON_LOOP_EXTENTS,
+) -> dict[str, float]:
+    """Return separate spatial Wilson-loop operator channels for one time slice."""
+
+    lattice = field.lattice
+    t_mod = t % lattice.shape[3]
+    channels: dict[str, list[float]] = {f"spatial_loop_{extent_mu}x{extent_nu}": [] for extent_mu, extent_nu in extents}
+    for x in range(lattice.shape[0]):
+        for y in range(lattice.shape[1]):
+            for z in range(lattice.shape[2]):
+                site = (x, y, z, t_mod)
+                for mu, nu in spatial_direction_pairs():
+                    for extent_mu, extent_nu in extents:
+                        key = f"spatial_loop_{extent_mu}x{extent_nu}"
+                        channels[key].append(wilson_loop_scalar(field, site, mu, nu, extent_mu, extent_nu))
+    return {key: float(np.mean(values)) for key, values in channels.items()}
+
+
+def spatial_wilson_loop_basis_timeseries(
+    field: GaugeField,
+    extents: tuple[tuple[int, int], ...] = DEFAULT_SPATIAL_WILSON_LOOP_EXTENTS,
+) -> dict[str, NDArray[np.float64]]:
+    """Return one time series per spatial Wilson-loop basis channel."""
+
+    per_time = [spatial_wilson_loop_operator_basis(field, t, extents=extents) for t in range(field.lattice.shape[3])]
+    if not per_time:
+        return {}
+    return {
+        key: np.array([channels[key] for channels in per_time], dtype=float)
+        for key in per_time[0]
+    }
+
+
+def glueball_timeseries(
+    field: GaugeField,
+    operator: str = GLUEBALL_OPERATOR_SPATIAL_PLAQUETTE,
+) -> NDArray[np.float64]:
+    """Return ``O(t)`` for every temporal slice using a named operator."""
+
+    if operator not in GLUEBALL_OPERATOR_MODES:
+        raise ValueError(f"unknown glueball operator mode: {operator}")
+    operator_fn = glueball_operator if operator == GLUEBALL_OPERATOR_SPATIAL_PLAQUETTE else spatial_wilson_loop_operator
 
     return np.array(
-        [glueball_operator(field, t) for t in range(field.lattice.shape[3])],
+        [operator_fn(field, t) for t in range(field.lattice.shape[3])],
         dtype=float,
     )

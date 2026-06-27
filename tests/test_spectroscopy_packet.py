@@ -1,4 +1,5 @@
 import csv
+import json
 
 import numpy as np
 
@@ -60,6 +61,8 @@ def test_write_correlator_packet_creates_required_files(tmp_path) -> None:
         "manifest.json",
         "observables.csv",
         "diagnostics.json",
+        "quality_gates.json",
+        "candidate_assessment.json",
         "glueball_samples.npy",
         "correlator.csv",
         "effective_mass.csv",
@@ -77,3 +80,9 @@ def test_write_correlator_packet_creates_required_files(tmp_path) -> None:
 
     with (run_dir / "effective_mass.csv").open(newline="", encoding="utf-8") as handle:
         assert list(csv.DictReader(handle))
+    quality_gates = json.loads((run_dir / "quality_gates.json").read_text(encoding="utf-8"))
+    assert quality_gates["summary"]["interpretation_status"] == "diagnostic_with_warnings"
+    assert any(gate["name"] == "finite_correlator_values" for gate in quality_gates["gates"])
+    candidate = json.loads((run_dir / "candidate_assessment.json").read_text(encoding="utf-8"))
+    assert "candidate_status" in candidate
+    assert "not proof" in candidate["claim_boundary"]

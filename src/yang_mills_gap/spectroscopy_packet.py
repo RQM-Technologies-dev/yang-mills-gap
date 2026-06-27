@@ -7,6 +7,7 @@ from typing import Any
 
 import numpy as np
 
+from .candidate import assess_closure_resonance_candidate
 from .correlators import bootstrap_correlator, temporal_correlator
 from .diagnostics import autocorrelation, integrated_autocorrelation_time, running_mean, thermalization_window_summary
 from .effective_mass import effective_mass, effective_mass_cosh
@@ -17,6 +18,7 @@ from .packet_plots import (
     plot_running_mean,
     plot_thermalization,
 )
+from .quality_gates import evaluate_packet_quality
 from .run_packet import save_array, save_config_json, save_diagnostics_json, save_figure, save_manifest_json, save_records_csv
 
 
@@ -139,10 +141,18 @@ def write_correlator_packet(
     enriched_config["n_samples"] = int(sample_array.shape[0])
     enriched_config["mean_mode"] = mean_mode
     diagnostics = diagnostics_from_records(records, artifacts, enriched_config)
+    quality_gates = evaluate_packet_quality(records, artifacts, diagnostics, enriched_config)
+    candidate_assessment = assess_closure_resonance_candidate(artifacts, quality_gates)
+    diagnostics["summary"]["quality_gate_status"] = quality_gates["summary"]["interpretation_status"]
+    diagnostics["summary"]["quality_gate_fail_count"] = quality_gates["summary"]["n_fail"]
+    diagnostics["summary"]["quality_gate_warn_count"] = quality_gates["summary"]["n_warn"]
+    diagnostics["summary"]["candidate_status"] = candidate_assessment["candidate_status"]
 
     save_config_json(root / "config.json", enriched_config)
     save_records_csv(root / "observables.csv", records)
     save_diagnostics_json(root / "diagnostics.json", diagnostics)
+    save_diagnostics_json(root / "quality_gates.json", quality_gates)
+    save_diagnostics_json(root / "candidate_assessment.json", candidate_assessment)
     save_array(root / "glueball_samples.npy", sample_array)
     save_records_csv(root / "correlator.csv", make_correlator_records(artifacts["correlator"], artifacts["correlator_stderr"]))
     save_records_csv(
@@ -204,6 +214,8 @@ def write_correlator_packet(
             "config": "config.json",
             "observables": "observables.csv",
             "diagnostics": "diagnostics.json",
+            "quality_gates": "quality_gates.json",
+            "candidate_assessment": "candidate_assessment.json",
             "correlator": "correlator.csv",
             "effective_mass": "effective_mass.csv",
             "plots": plot_manifest,

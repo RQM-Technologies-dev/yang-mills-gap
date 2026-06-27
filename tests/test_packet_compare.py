@@ -1,4 +1,5 @@
 import csv
+import json
 
 import numpy as np
 
@@ -46,6 +47,32 @@ def make_minimal_effective_mass_packet(tmp_path):
         ],
     )
     save_manifest_json(run_dir, {"artifacts": {"effective_mass": "effective_mass.csv"}})
+    (run_dir / "quality_gates.json").write_text(
+        json.dumps(
+            {
+                "summary": {
+                    "interpretation_status": "diagnostic_with_warnings",
+                    "n_fail": 0,
+                    "n_warn": 1,
+                },
+                "gates": [],
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (run_dir / "candidate_assessment.json").write_text(
+        json.dumps(
+            {
+                "candidate_status": "candidate_with_warnings",
+                "selected_estimator": "cosh",
+                "candidate_mean": 0.51,
+                "candidate_relative_std": 0.02,
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     return run_dir
 
 
@@ -87,6 +114,12 @@ def test_summarize_effective_mass_packet_handles_finite_and_invalid_values(tmp_p
 
     assert summary["research_objective"] == "compare diagnostics"
     assert summary["claim_boundary"] == "diagnostic only"
+    assert summary["quality_gate_status"] == "diagnostic_with_warnings"
+    assert summary["quality_gate_fail_count"] == 0
+    assert summary["quality_gate_warn_count"] == 1
+    assert summary["candidate_status"] == "candidate_with_warnings"
+    assert summary["candidate_estimator"] == "cosh"
+    assert summary["candidate_mean"] == 0.51
     assert summary["min_finite_m_eff_log"] == 0.69
     assert summary["min_finite_m_eff_cosh"] == 0.5
     assert summary["n_finite_m_eff_log"] == 3

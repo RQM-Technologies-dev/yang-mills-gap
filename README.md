@@ -14,6 +14,8 @@ This repo is an attempt to build a disciplined Resonant Quantum Mechanics / Quat
 
 The research program separates standard SU(2) Wilson-action finite-lattice diagnostics, RQM/QSG interpretation, nonstandard deformation experiments, and the future continuum proof target. Finite-lattice packets are diagnostic evidence and engineering scaffolding, not a continuum proof by themselves.
 
+For the closure-resonance interpretation roadmap, see `docs/08_closure_resonance_roadmap.md`.
+
 ## Scope
 
 The first phase implements standard SU(2) Wilson lattice Yang-Mills without RQM deformation:
@@ -55,6 +57,8 @@ Use packets as the default container for future finite-lattice sanity diagnostic
 
 `inspect_latest_sweep.py` summarizes the newest sweep, including beta/seed coverage and the best packet under a simple cosh effective-mass plateau heuristic.
 
+`exp_011_larger_spectroscopy_sweep.py` runs a modest larger diagnostic sweep with a configurable lattice, beta list, seed list, sweep count, thermalization cut, measurement cadence, step size, and glueball-like operator. Its default operator averages gauge-invariant spatial 1x1, 1x2, and 2x1 Wilson loops. This is still a standard Wilson-action baseline measurement choice, not an anchor deformation.
+
 Sweep packet comparisons are implementation diagnostics for the finite-lattice baseline. They are useful for auditing trends and failure modes, but they are not Yang-Mills mass-gap evidence at the continuum level. Plateau detection is a heuristic diagnostic for candidate flat windows; it is not a proof of a mass gap.
 
 ## Quick Start
@@ -79,6 +83,7 @@ python experiments/exp_007_full_vs_local_metropolis_sanity.py
 python experiments/exp_008_diagnostic_run_packet.py
 python experiments/exp_009_correlator_run_packet.py
 python experiments/exp_010_beta_seed_sweep_packets.py
+python experiments/exp_011_larger_spectroscopy_sweep.py
 python experiments/inspect_latest_sweep.py
 ```
 
@@ -88,17 +93,20 @@ Figures are written to `outputs/figures`. Numerical data is written to `outputs/
 
 ```text
 src/yang_mills_gap/
+  baseline_contract.py Contract helpers for standard Wilson-action diagnostics
   quaternions.py       NumPy unit-quaternion operations for SU(2)
   lattice.py           Periodic 4D lattice helper
   gauge_field.py       Unit-quaternion link field U[x, y, z, t, mu]
   plaquette.py         Plaquette holonomy and closure defect
   wilson_action.py     Standard Wilson action and local staple utilities
-  observables.py       Average plaquette, closure defect, glueball-like O(t)
+  observables.py       Average plaquette, closure defect, glueball-like operators
   monte_carlo.py       Full-action reference and local-action Metropolis sweeps
   correlators.py       Connected temporal correlator plus bootstrap/jackknife helpers
   effective_mass.py    Log and cosh effective-mass estimators
   plateau.py           Simple effective-mass plateau heuristics
+  candidate.py         Packet-level closure-resonance candidate assessment
   diagnostics.py       Running means, autocorrelation, thermalization summaries
+  quality_gates.py     Packet-level quality gates for diagnostic interpretation
   experiment_driver.py Shared tiny-chain diagnostic driver
   packet_analysis.py   Dependency-light packet loading and summaries
   packet_compare.py    Packet summary and comparison CSV helpers
@@ -109,3 +117,4 @@ src/yang_mills_gap/
 ```
 
 Read `CLAIM_DISCIPLINE.md` before using this repository for public claims or summaries.
+For proof-facing gaps, see `docs/07_proof_roadmap.md`.

@@ -18,6 +18,8 @@ def test_build_sweep_config_is_serializable_and_carries_claim_boundary() -> None
     assert config["betas"] == [1.8]
     assert config["seeds"] == [101]
     assert config["baseline"] == "standard SU(2) Wilson action only"
+    assert "no anchor or deformation term" in config["baseline_dynamics"]
+    assert config["glueball_operator"] == "spatial_plaquette"
     assert "closure-resonance" in config["research_objective"]
     assert "diagnostic" in config["claim_boundary"]
 
@@ -64,4 +66,16 @@ def test_build_sweep_config_validates_basic_inputs() -> None:
             thermalization=1,
             measure_every=0,
             step_size=0.2,
+        )
+
+    with pytest.raises(ValueError, match="glueball_operator"):
+        build_sweep_config(
+            betas=[1.8],
+            seeds=[101],
+            lattice_shape=(1, 1, 1, 4),
+            n_sweeps=4,
+            thermalization=1,
+            measure_every=1,
+            step_size=0.2,
+            glueball_operator="anchor_deformed",
         )
