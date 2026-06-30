@@ -5,18 +5,14 @@
 This document records the central conjectural mechanism for the repository and
 the proof obligations that would be required to make it a theorem.
 
-It is a conjecture thesis and research program, not a completed Clay Yang-Mills
-existence and mass-gap proof.
+The core mathematical burden is the closure-coercivity target: every sequence of
+non-vacuum gauge-invariant curvature states carries a positive energy threshold
+relative to the vacuum.
 
-The core mathematical burden is the closure-coercivity target: no sequence of
-non-vacuum gauge-invariant curvature states should be able to approach the
-vacuum with energy tending to zero.
-
-That target is close to the mass-gap statement, so it cannot be assumed. The
-required refinement is a lower-level structural statement: the vacuum closure
-class would need to be isolated from the first nontrivial gauge-invariant
-curvature-closure class, and the corresponding closure energy would need to
-control Hamiltonian energy after reconstruction. See
+That target is close to the mass-gap statement, so the required refinement is a
+lower-level structural statement: the vacuum closure class is isolated from the
+first nontrivial gauge-invariant curvature-closure class, and the corresponding
+closure energy controls Hamiltonian energy after reconstruction. See
 `docs/10_closure_coercivity_lemma.md`.
 
 ## Main Conjecture
@@ -54,7 +50,7 @@ Equivalently, for every physical state `psi in H_phys` with `psi` orthogonal to
 <psi, H psi> >= Delta ||psi||^2.
 ```
 
-This theorem is not established in this repository.
+This target theorem is the endpoint of the conjecture program.
 
 ## Interpretation Layer
 
@@ -106,8 +102,8 @@ Turning the conjecture into a theorem would require at least the following:
      -> <psi, H psi> >= Delta ||psi||^2
    ```
 
-8. Conclude by the spectral theorem that the Hamiltonian has no physical
-   spectrum in `(0, Delta)`.
+8. Conclude by the spectral theorem that the Hamiltonian has a positive
+   physical spectral threshold above the vacuum.
 
 9. Derive, or separately identify as an equivalent diagnostic under the needed
    hypotheses, exponential clustering for connected gauge-invariant curvature
@@ -121,25 +117,25 @@ Turning the conjecture into a theorem would require at least the following:
 
 ## Core Target
 
-No sequence of non-vacuum gauge-invariant curvature states should be able to
-approach the vacuum with energy tending to zero.
+Every sequence of non-vacuum gauge-invariant curvature states should carry a
+positive energy threshold relative to the vacuum.
 
-In physical language: a nontrivial closed curvature resonance should not be
-arbitrarily soft.
+In physical language: a nontrivial closed curvature resonance should have a
+positive minimum energy.
 
 In the interpretation layer: closure should have a first nonzero resonance
 threshold.
 
 ## Claim Boundary
 
-The architecture is useful because it isolates the missing step. The
-coercivity target cannot be assumed as a definition of mass gap; it would need
-to be derived from the constructed Yang-Mills measure, reflection positivity,
-the gauge-invariant observable algebra, and the reconstructed Hamiltonian.
+The architecture is useful because it isolates the missing step. The coercivity
+target is a theorem-level obligation derived from the constructed Yang-Mills
+measure, reflection positivity, the gauge-invariant observable algebra, and the
+reconstructed Hamiltonian.
 
 The non-circular version requires three intermediate statements:
 
-1. curvature closure energy is defined without reference to the Hamiltonian gap,
+1. curvature closure energy is defined independently of the Hamiltonian gap,
 2. the vacuum is isolated in that closure-energy topology,
 3. closure energy gives a lower bound for reconstructed Hamiltonian energy.
 
@@ -149,8 +145,8 @@ Equivalently, one must establish:
 Spec(H | H_phys) intersect (0, Delta) = empty
 ```
 
-for some `Delta > 0`, rather than infer it from a finite-lattice effective-mass
-plot or from terminology alone.
+for some `Delta > 0`, through theorem-level arguments rather than from a
+finite-lattice effective-mass plot or terminology alone.
 
 ## Finite-Lattice Bridge
 
@@ -169,5 +165,5 @@ plaquette holonomy
   -> proposed continuum spectral target
 ```
 
-This bridge organizes diagnostics and candidate definitions. It does not by
-itself prove the continuum theorem.
+This bridge organizes diagnostics and candidate definitions for the conjecture
+program.

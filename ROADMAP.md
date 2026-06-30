@@ -16,7 +16,7 @@ the standard SU(2) Wilson-action diagnostic baseline.
 
 ## 2. Numerical Quality
 
-- Treat all finite-lattice outputs as diagnostics, not theorem evidence.
+- Treat all finite-lattice outputs as diagnostics for theorem-target selection.
 - Require packet configs, observables, diagnostics, plots, quality gates, and
   candidate assessments for spectroscopy comparisons.
 - Track thermalization, autocorrelation, bootstrap/jackknife uncertainty, and
@@ -29,14 +29,14 @@ the standard SU(2) Wilson-action diagnostic baseline.
 - Improve closed gauge-invariant operator bases built from plaquettes and
   spatial Wilson loops.
 - Improve connected correlator statistics.
-- Fit effective-mass plateaus only with uncertainty and packet diagnostics
-  beside them.
-- Use plateau and candidate reports only as finite-lattice signals that may
-  suggest continuum spectral targets.
+- Fit effective-mass plateaus with uncertainty and packet diagnostics beside
+  them.
+- Use plateau and candidate reports as finite-lattice signals that may suggest
+  continuum spectral targets.
 
 ## 4. Closure-Energy Definitions
 
-- Formulate curvature closure without changing the Wilson baseline.
+- Formulate curvature closure while preserving the Wilson baseline.
 - Define a non-circular closure-energy target independent of the Hamiltonian
   spectral gap.
 - Specify admissible gauge-invariant curvature observables and the closure
@@ -46,8 +46,8 @@ the standard SU(2) Wilson-action diagnostic baseline.
 
 ## 5. Closure-Coercivity Target
 
-- State the future theorem obligation: the vacuum closure class would need to be
-  isolated from the first nontrivial gauge-invariant curvature-closure class.
+- State the future theorem obligation: the vacuum closure class is isolated from
+  the first nontrivial gauge-invariant curvature-closure class.
 - Express the target as a positive lower bound for non-vacuum closure energy.
 - Keep `docs/10_closure_coercivity_lemma.md` as the current lower-level
   non-circular conjectural target.
@@ -55,18 +55,18 @@ the standard SU(2) Wilson-action diagnostic baseline.
 ## 6. Closure-To-Hamiltonian Comparison
 
 - Treat the Euclidean Yang-Mills measure and Osterwalder-Schrader
-  reconstruction as future construction obligations, not repo-local results.
-- Compare closure energy to reconstructed Hamiltonian energy only after the
-  relevant objects are defined.
-- Formulate the needed theorem: positive closure energy would force a positive
-  lower Hamiltonian bound for every physical non-vacuum state.
+  reconstruction as future construction obligations.
+- Compare closure energy to reconstructed Hamiltonian energy after the relevant
+  objects are defined.
+- Formulate the needed theorem: positive closure energy forces a positive lower
+  Hamiltonian bound for every physical non-vacuum state.
 
 ## 7. Spectral-Gap Theorem Target
 
-- Use the spectral theorem only as the final target after the construction,
+- Use the spectral theorem as the final target after the construction,
   closure-coercivity, and Hamiltonian-comparison obligations are met.
 - Treat exponential clustering either as a consequence of a gap or as a
-  separately established equivalent route, not as an unproved input.
+  separately established equivalent route.
 - Keep `docs/07_proof_roadmap.md` and
   `docs/09_curvature_closure_proof.md` aligned with this conjecture-first
   sequence.

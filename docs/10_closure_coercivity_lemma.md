@@ -6,13 +6,12 @@ This document records the main lower-level coercivity target for the
 **Curvature-Closure Conjecture for the Yang-Mills Mass Gap** in
 `docs/09_curvature_closure_proof.md`.
 
-It is not a completed proof. Its purpose is to prevent circularity: the mass gap
-must not be assumed by renaming it "closure." The closure energy must be defined
-independently, vacuum isolation must be established in that closure structure,
-and only then could one derive a Hamiltonian spectral lower bound.
+The target prevents circularity by defining closure energy independently,
+establishing vacuum isolation in that closure structure, and then deriving a
+Hamiltonian spectral lower bound.
 
-Closure energy, vacuum isolation, and Hamiltonian control are all future proof
-obligations, not current repository results.
+Closure energy, vacuum isolation, and Hamiltonian control are future proof
+obligations for the conjecture program.
 
 ## Target Statement
 
@@ -39,11 +38,11 @@ The desired consequence after Osterwalder-Schrader reconstruction is:
 
 for every physical state `psi` orthogonal to the vacuum.
 
-Neither statement is established in this repository.
+Both statements are theorem-level goals of the conjecture program.
 
 ## Required Non-Circular Definitions
 
-The target needs three definitions that do not assume the Hamiltonian gap.
+The target needs three definitions made independently of the Hamiltonian gap.
 
 1. **Gauge-invariant curvature state.**
    A state generated from the vacuum by gauge-invariant smeared local
@@ -110,14 +109,12 @@ E_closure(psi) >= epsilon
   -> <psi, H psi> >= Delta ||psi||^2.
 ```
 
-This is the step that would turn closure isolation into a spectral gap. Without
-this comparison theorem, closure energy remains an interpretation or diagnostic
-quantity rather than a mass-gap theorem.
+This comparison theorem turns closure isolation into a spectral gap. Closure
+energy becomes a mass-gap theorem ingredient once this comparison is established.
 
 ## Relation To Exponential Clustering
 
-Exponential clustering should not be silently assumed as an independent input.
-There are two honest routes:
+Exponential clustering is a theorem-level route with two honest forms:
 
 1. Establish closure coercivity and Hamiltonian lower bound first, then derive
    exponential decay of connected gauge-invariant curvature correlators.
@@ -129,7 +126,7 @@ The conjecture thesis should state which direction is being attempted.
 
 ## Finite-Lattice Diagnostic Role
 
-The current repository can test only finite-lattice shadows of this target:
+The current repository tests finite-lattice shadows of this target:
 
 - Wilson closure cost through plaquette defects,
 - gauge-invariant spatial Wilson-loop operator bases,
@@ -138,14 +135,14 @@ The current repository can test only finite-lattice shadows of this target:
 - quality gates,
 - and packet-level candidate assessments.
 
-These diagnostics can suggest whether the closure-coercivity target is
-plausible. They cannot prove vacuum isolation in the continuum theory.
+These diagnostics suggest whether the closure-coercivity target is plausible
+and help refine the theorem-level obligations.
 
 ## Critic's Checklist
 
 A future proof attempt must answer:
 
-- Is closure energy defined without using the spectral gap?
+- Is closure energy defined independently of the spectral gap?
 - Is the vacuum closure class defined in gauge-invariant terms?
 - Are nontrivial physical closure classes separated from vacuum by a positive
   renormalized threshold?

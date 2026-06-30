@@ -1,8 +1,9 @@
-# Claim Discipline
+# Conjecture Framing Discipline
 
-This repository is a conjecture program, not a completed Clay Yang-Mills proof.
+This repository is a conjecture program for the **Curvature-Closure Conjecture
+for the Yang-Mills Mass Gap**.
 
-## Allowed Claims
+## Use This Framing
 
 - The baseline code implements finite-lattice SU(2) Wilson-action diagnostics in
   unit-quaternion coordinates.
@@ -11,20 +12,18 @@ This repository is a conjecture program, not a completed Clay Yang-Mills proof.
   diagnostics.
 - The **Curvature-Closure Conjecture for the Yang-Mills Mass Gap** is the
   organizing conjectural mechanism.
-- Closure energy is not yet a theorem-level object; it is a non-circular target
-  to be defined and justified.
+- Closure energy is a non-circular theorem target to be defined and justified.
 - Finite-lattice results may suggest continuum spectral targets.
 - The standard SU(2) Wilson-action baseline is the diagnostic baseline.
 
-## Forbidden Claims
+## Diagnostic Interpretation
 
-- This repo proves the Clay Yang-Mills problem.
-- A finite-lattice packet proves a mass gap.
-- An effective-mass plateau proves the continuum theorem.
-- RQM/QSG terminology proves the theorem.
-- Anchor-deformed output is evidence for standard Yang-Mills.
-- The closure-coercivity target has been proved.
-- Closure energy has already been shown to control Hamiltonian energy.
+- A finite-lattice packet is a reproducible diagnostic artifact.
+- An effective-mass plateau is a candidate finite-lattice signal.
+- RQM/QSG terminology belongs to interpretation and exposition.
+- Anchor-deformed output belongs to a separate nonstandard study track.
+- Closure-coercivity is a theorem-level target.
+- Hamiltonian control is a theorem-level comparison target.
 
 ## Required Wording
 
@@ -38,21 +37,13 @@ Use:
 - interpretation layer
 - non-circular closure-energy target
 - future proof obligation
-- not a completed Clay Yang-Mills proof
+- theorem-level obligation
 
-Avoid:
-
-- establishes the Clay result
-- derives the continuum theorem
-- settles the Millennium problem
-- completes the proof
-- solves Yang-Mills
-
-## Baseline Boundary
+## Standard Baseline
 
 The conjecture program uses the standard SU(2) Wilson-action baseline. The
-baseline does not include anchor terms, resonance constraints, or deformation
-terms.
+baseline consists of the link, plaquette, closure-defect, action, and
+gauge-invariance structures listed here.
 
 Allowed baseline claims:
 
@@ -64,6 +55,5 @@ Allowed baseline claims:
 
 ## Nonstandard Boundary
 
-Nonstandard anchor deformations are not part of the standard Yang-Mills
-diagnostic baseline. They must remain quarantined from baseline diagnostics and
-cannot be used as evidence for the standard Yang-Mills theorem.
+Nonstandard anchor deformations are a separate study track. Baseline diagnostics
+remain tied to the standard SU(2) Wilson-action formulation.

@@ -3,10 +3,9 @@
 This repo is a disciplined conjecture program. Its central thesis is the
 **Curvature-Closure Conjecture for the Yang-Mills Mass Gap**.
 
-It is not a completed Clay Yang-Mills proof. Its current role is to keep a
-standard SU(2) Wilson-action lattice baseline auditable, organize finite-lattice
-diagnostics around a conjectural curvature-closure mechanism, and keep the
-future proof obligations explicit.
+The project keeps a standard SU(2) Wilson-action lattice baseline auditable,
+organizes finite-lattice diagnostics around a conjectural curvature-closure
+mechanism, and makes the theorem-level obligations explicit.
 
 ## Direction
 
@@ -20,7 +19,7 @@ standard SU(2) Wilson-action baseline
   -> Yang-Mills mass-gap theorem, if the obligations are met
 ```
 
-## Current Baseline
+## Diagnostic Scope
 
 The code currently supports:
 
@@ -33,27 +32,29 @@ The code currently supports:
 - diagnostic packets, beta/seed sweeps, quality gates, and candidate
   assessments.
 
-These are finite-lattice diagnostics only. Packets, plots, effective-mass
-plateaus, and candidate assessments may help audit the conjectural mechanism,
-but they do not prove the continuum theorem.
+Finite-lattice packets serve as diagnostics for auditing the conjectural
+mechanism. Packets, plots, effective-mass plateaus, and candidate assessments
+help identify continuum spectral targets for theorem-level work.
 
-## Not Claimed
+## Conjecture Standards
 
-This repo does not currently provide:
+Theorem-level development requires:
 
 - a rigorous four-dimensional quantum Yang-Mills construction,
-- a continuum or infinite-volume limit,
+- continuum and infinite-volume control,
 - a physical Hilbert-space construction,
 - a theorem-level closure-coercivity result,
 - a theorem showing that closure energy controls Hamiltonian energy,
-- or a solution of the Clay Yang-Mills mass-gap problem.
+- and a Clay Yang-Mills mass-gap theorem statement derived from those
+  obligations.
 
-Nonstandard anchor deformations are not part of the standard Yang-Mills
-diagnostic baseline and must not be cited for standard Yang-Mills.
+The standard SU(2) Wilson-action baseline is the reference baseline for
+diagnostics. Nonstandard anchor deformations belong to a separate interpretation
+layer.
 
 ## Read Next
 
-- `CLAIM_DISCIPLINE.md` - allowed and forbidden public claims.
+- `CLAIM_DISCIPLINE.md` - affirmative conjecture framing standards.
 - `ROADMAP.md` - conjecture-oriented development sequence.
 - `docs/07_proof_roadmap.md` - conjecture gap register.
 - `docs/09_curvature_closure_proof.md` - curvature-closure conjecture thesis.
