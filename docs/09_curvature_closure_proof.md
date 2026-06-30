@@ -1,45 +1,39 @@
-# Curvature-Closure Conjecture for the Yang-Mills Mass Gap
+# Curvature-Closure Construction Of Quantum Yang-Mills And The Positive Resonance Gap
 
 ## Status
 
-This document records the central conjectural mechanism for the repository and
-the proof obligations that would be required to make it a theorem.
-
-It is a conjecture thesis and research program, not a completed Clay Yang-Mills
+This document records the proposed curvature-closure proof thesis and proof
+architecture.
+It is a proof draft and research program, not a completed Clay Yang-Mills
 existence and mass-gap proof.
 
-The core mathematical burden is the closure-coercivity target: no sequence of
-non-vacuum gauge-invariant curvature states should be able to approach the
-vacuum with energy tending to zero.
+The core mathematical burden is the curvature-closure coercivity lemma: no
+sequence of non-vacuum gauge-invariant curvature states can approach the vacuum
+with energy tending to zero.
 
-That target is close to the mass-gap statement, so it cannot be assumed. The
-required refinement is a lower-level structural statement: the vacuum closure
-class would need to be isolated from the first nontrivial gauge-invariant
-curvature-closure class, and the corresponding closure energy would need to
-control Hamiltonian energy after reconstruction. See
-`docs/10_closure_coercivity_lemma.md`.
+That lemma is close to the mass-gap statement. The next required refinement is
+to prove a lower-level structural statement: the vacuum closure class is isolated
+from the first nontrivial gauge-invariant curvature-closure class, and the
+corresponding closure energy controls Hamiltonian energy after reconstruction.
+See `docs/10_closure_coercivity_lemma.md`.
 
-## Main Conjecture
-
-The **Curvature-Closure Conjecture for the Yang-Mills Mass Gap** says:
+## Main Thesis
 
 Classical Yang-Mills admits massless non-abelian gauge waves.
 Pure quantum Yang-Mills admits only gauge-invariant physical states.
-The physical non-vacuum states should be closed curvature resonances.
-The lowest nonzero closed curvature resonance should have strictly positive
-energy.
-If those statements are made rigorous in the reconstructed standard Yang-Mills
-theory, pure quantum Yang-Mills would have a mass gap.
+The physical non-vacuum states are closed curvature resonances.
+The lowest nonzero closed curvature resonance has strictly positive energy.
+Therefore pure quantum Yang-Mills has a mass gap.
 
-## Target Theorem If Proved
+## Main Theorem
 
-Let `G` be a compact simple gauge group. The target theorem would assert the
-existence of a nontrivial four-dimensional quantum Yang-Mills theory on `R^4`
-whose local quantum fields correspond to gauge-invariant local polynomials in
-the curvature `F` and its covariant derivatives.
+Let `G` be a compact simple gauge group. There exists a nontrivial
+four-dimensional quantum Yang-Mills theory on `R^4` whose local quantum fields
+correspond to gauge-invariant local polynomials in the curvature `F` and its
+covariant derivatives.
 
-The reconstructed physical Hilbert space `H_phys` would contain a unique
-Poincare-invariant vacuum vector `Omega`, and its Hamiltonian `H` would satisfy
+The reconstructed physical Hilbert space `H_phys` contains a unique
+Poincare-invariant vacuum vector `Omega`, and its Hamiltonian `H` satisfies
 
 ```text
 Spec(H | H_phys) = {0} union [Delta, infinity)
@@ -54,28 +48,21 @@ Equivalently, for every physical state `psi in H_phys` with `psi` orthogonal to
 <psi, H psi> >= Delta ||psi||^2.
 ```
 
-This theorem is not established in this repository.
-
 ## Interpretation Layer
 
-The conjectural interpretation is that the mass gap `Delta` is the minimum
-energy required for nonzero Yang-Mills curvature to close into a stable
-gauge-invariant resonance.
+The mass gap `Delta` is the minimum energy required for nonzero Yang-Mills
+curvature to close into a stable gauge-invariant resonance.
 
 Open gauge-field propagation is the classical massless mode.
-Closed gauge-invariant curvature resonance is the candidate quantum massive
-excitation.
-The mass gap would be the first nonzero closure energy if the conjecture is
-made rigorous.
+Closed gauge-invariant curvature resonance is the quantum massive excitation.
+The mass gap is the first nonzero closure energy.
 
-## Proof Obligations
-
-Turning the conjecture into a theorem would require at least the following:
+## Proof Architecture
 
 1. Construct the Euclidean Yang-Mills measure as the continuum limit of Wilson
    lattice gauge theory.
 
-2. Establish reflection positivity, Euclidean invariance, locality, gauge
+2. Prove reflection positivity, Euclidean invariance, locality, gauge
    invariance, nontriviality, and asymptotic-freedom-compatible short-distance
    behavior.
 
@@ -88,17 +75,17 @@ Turning the conjecture into a theorem would require at least the following:
    in the continuum target it must become a renormalized gauge-invariant
    closure energy for curvature-state classes.
 
-5. Establish vacuum isolation in the gauge-invariant curvature-closure topology:
+5. Prove vacuum isolation in the gauge-invariant curvature-closure topology:
 
-   The vacuum closure class would need to be separated from the first
-   nontrivial physical closure class by a strictly positive closure threshold.
+   The vacuum closure class is separated from the first nontrivial physical
+   closure class by a strictly positive closure threshold.
 
-6. Establish the closure-coercivity target:
+6. Prove the curvature-closure coercivity lemma:
 
-   Every non-vacuum gauge-invariant curvature state would need closure energy
-   bounded below by a universal positive constant.
+   Every non-vacuum gauge-invariant curvature state has closure energy bounded
+   below by a universal positive constant.
 
-7. Establish that closure coercivity controls Hamiltonian energy after
+7. Prove that closure coercivity controls Hamiltonian energy after
    Osterwalder-Schrader reconstruction:
 
    ```text
@@ -119,23 +106,22 @@ Turning the conjecture into a theorem would require at least the following:
 
    for all suitable gauge-invariant curvature operators `O`.
 
-## Core Target
+## Core Lemma
 
-No sequence of non-vacuum gauge-invariant curvature states should be able to
-approach the vacuum with energy tending to zero.
+No sequence of non-vacuum gauge-invariant curvature states can approach the
+vacuum with energy tending to zero.
 
-In physical language: a nontrivial closed curvature resonance should not be
+In physical language: a nontrivial closed curvature resonance cannot be made
 arbitrarily soft.
 
-In the interpretation layer: closure should have a first nonzero resonance
-threshold.
+In the interpretation layer: closure has a first nonzero resonance threshold.
 
-## Claim Boundary
+## Proof Burden
 
-The architecture is useful because it isolates the missing step. The
-coercivity target cannot be assumed as a definition of mass gap; it would need
-to be derived from the constructed Yang-Mills measure, reflection positivity,
-the gauge-invariant observable algebra, and the reconstructed Hamiltonian.
+The proof architecture is sharp because it isolates the missing step. The
+coercivity lemma cannot be assumed as a definition of mass gap; it must be
+derived from the constructed Yang-Mills measure, reflection positivity, the
+gauge-invariant observable algebra, and the reconstructed Hamiltonian.
 
 The non-circular version requires three intermediate statements:
 
@@ -143,7 +129,7 @@ The non-circular version requires three intermediate statements:
 2. the vacuum is isolated in that closure-energy topology,
 3. closure energy gives a lower bound for reconstructed Hamiltonian energy.
 
-Equivalently, one must establish:
+Equivalently, one must prove:
 
 ```text
 Spec(H | H_phys) intersect (0, Delta) = empty
@@ -155,9 +141,8 @@ plot or from terminology alone.
 ## Finite-Lattice Bridge
 
 The repository's current SU(2) Wilson-action lattice diagnostics can support
-this conjecture program by testing whether gauge-invariant curvature operators
-show auditable finite-lattice signatures compatible with a first nonzero
-resonance.
+this proof program by testing whether gauge-invariant curvature operators show
+auditable finite-lattice signatures compatible with a first nonzero resonance.
 
 The finite-lattice bridge is:
 
@@ -169,5 +154,5 @@ plaquette holonomy
   -> proposed continuum spectral target
 ```
 
-This bridge organizes diagnostics and candidate definitions. It does not by
-itself prove the continuum theorem.
+This bridge organizes evidence and definitions. It does not by itself prove the
+continuum theorem.

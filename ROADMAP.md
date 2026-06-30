@@ -1,8 +1,7 @@
 # Roadmap
 
-This roadmap is conjecture-oriented. Every phase supports the
-**Curvature-Closure Conjecture for the Yang-Mills Mass Gap** while preserving
-the standard SU(2) Wilson-action diagnostic baseline.
+This roadmap is proof-oriented. Every phase supports the curvature-closure
+program for Yang-Mills existence and positive spectral gap.
 
 ## 1. Standard SU(2) Wilson Baseline
 
@@ -36,7 +35,7 @@ the standard SU(2) Wilson-action diagnostic baseline.
 
 ## 4. Closure-Energy Definitions
 
-- Formulate curvature closure without changing the Wilson baseline.
+- Define curvature closure without changing the Wilson baseline.
 - Define a non-circular closure-energy target independent of the Hamiltonian
   spectral gap.
 - Specify admissible gauge-invariant curvature observables and the closure
@@ -44,29 +43,27 @@ the standard SU(2) Wilson-action diagnostic baseline.
 - Track the renormalization needed to compare lattice Wilson closure cost to a
   continuum closure-energy quantity.
 
-## 5. Closure-Coercivity Target
+## 5. Closure-Coercivity Lemma
 
-- State the future theorem obligation: the vacuum closure class would need to be
-  isolated from the first nontrivial gauge-invariant curvature-closure class.
-- Express the target as a positive lower bound for non-vacuum closure energy.
+- Prove, as a future target, that the vacuum closure class is isolated from the
+  first nontrivial gauge-invariant curvature-closure class.
+- Express this as a positive lower bound for non-vacuum closure energy.
 - Keep `docs/10_closure_coercivity_lemma.md` as the current lower-level
-  non-circular conjectural target.
+  non-circular proof target.
 
 ## 6. Closure-To-Hamiltonian Comparison
 
-- Treat the Euclidean Yang-Mills measure and Osterwalder-Schrader
-  reconstruction as future construction obligations, not repo-local results.
-- Compare closure energy to reconstructed Hamiltonian energy only after the
-  relevant objects are defined.
-- Formulate the needed theorem: positive closure energy would force a positive
-  lower Hamiltonian bound for every physical non-vacuum state.
+- Construct or assume only after proof the Euclidean Yang-Mills measure and
+  Osterwalder-Schrader reconstruction.
+- Compare closure energy to reconstructed Hamiltonian energy.
+- Prove that positive closure energy forces a positive lower Hamiltonian bound
+  for every physical non-vacuum state.
 
-## 7. Spectral-Gap Theorem Target
+## 7. Spectral Gap Theorem
 
-- Use the spectral theorem only as the final target after the construction,
-  closure-coercivity, and Hamiltonian-comparison obligations are met.
-- Treat exponential clustering either as a consequence of a gap or as a
-  separately established equivalent route, not as an unproved input.
+- Use the spectral theorem to derive
+  `Spec(H | H_phys) intersect (0, Delta) = empty`.
+- Treat exponential clustering either as a consequence of the gap or as a
+  separately proved equivalent route, not as an unproved input.
 - Keep `docs/07_proof_roadmap.md` and
-  `docs/09_curvature_closure_proof.md` aligned with this conjecture-first
-  sequence.
+  `docs/09_curvature_closure_proof.md` aligned with this sequence.
