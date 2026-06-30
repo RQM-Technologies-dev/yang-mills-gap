@@ -1,20 +1,26 @@
-# Closure-Coercivity Lemma
+# Closure-Coercivity Target
 
 ## Status
 
-This document is a lower-level proof target for the curvature-closure proof
-draft in `docs/09_curvature_closure_proof.md`.
+This document records the main lower-level coercivity target for the
+**Curvature-Closure Conjecture for the Yang-Mills Mass Gap** in
+`docs/09_curvature_closure_proof.md`.
 
 It is not a completed proof. Its purpose is to prevent circularity: the mass gap
 must not be assumed by renaming it "closure." The closure energy must be defined
-independently, vacuum isolation must be proved in that closure structure, and
-only then may one derive a Hamiltonian spectral lower bound.
+independently, vacuum isolation must be established in that closure structure,
+and only then could one derive a Hamiltonian spectral lower bound.
+
+Closure energy, vacuum isolation, and Hamiltonian control are all future proof
+obligations, not current repository results.
 
 ## Target Statement
 
-Nontrivial gauge-invariant curvature closure requires a minimum nonzero
-renormalized action or energy because the vacuum closure class is isolated from
-the first nontrivial physical closure class.
+The conjectural coercivity statement is:
+
+Nontrivial gauge-invariant curvature closure should require a minimum nonzero
+renormalized action or energy because the vacuum closure class should be
+isolated from the first nontrivial physical closure class.
 
 In formula form, the desired target is:
 
@@ -33,9 +39,11 @@ The desired consequence after Osterwalder-Schrader reconstruction is:
 
 for every physical state `psi` orthogonal to the vacuum.
 
+Neither statement is established in this repository.
+
 ## Required Non-Circular Definitions
 
-The lemma needs three definitions that do not assume the Hamiltonian gap.
+The target needs three definitions that do not assume the Hamiltonian gap.
 
 1. **Gauge-invariant curvature state.**
    A state generated from the vacuum by gauge-invariant smeared local
@@ -75,11 +83,11 @@ The lemma needs three definitions that do not assume the Hamiltonian gap.
    quantity.
 
 The exact admissible observables, topology, representatives, and normalization
-are part of the proof burden.
+remain part of the future proof burden.
 
 ## Vacuum Isolation Target
 
-The key structural claim is:
+The key structural target is:
 
 ```text
 There exists epsilon > 0 such that every non-vacuum gauge-invariant
@@ -87,41 +95,41 @@ curvature-closure class C satisfies E_closure(C) >= epsilon.
 ```
 
 This is stronger than observing that a finite lattice run has a positive
-effective mass. It says the vacuum closure class is isolated from nontrivial
-closed curvature excitations after renormalization and after taking the required
-limits.
+effective mass. It would say the vacuum closure class is isolated from
+nontrivial closed curvature excitations after renormalization and after taking
+the required limits.
 
 ## Coercivity-To-Hamiltonian Step
 
 After the Euclidean theory is constructed and Osterwalder-Schrader
-reconstruction is available, one must prove that closure energy controls
-Hamiltonian energy:
+reconstruction is available, one would need to establish that closure energy
+controls Hamiltonian energy:
 
 ```text
 E_closure(psi) >= epsilon
   -> <psi, H psi> >= Delta ||psi||^2.
 ```
 
-This is the step that turns closure isolation into a spectral gap. Without this
-comparison theorem, closure energy would remain an interpretation or diagnostic
-quantity rather than a proof of mass gap.
+This is the step that would turn closure isolation into a spectral gap. Without
+this comparison theorem, closure energy remains an interpretation or diagnostic
+quantity rather than a mass-gap theorem.
 
 ## Relation To Exponential Clustering
 
 Exponential clustering should not be silently assumed as an independent input.
 There are two honest routes:
 
-1. Prove closure coercivity and Hamiltonian lower bound first, then derive
+1. Establish closure coercivity and Hamiltonian lower bound first, then derive
    exponential decay of connected gauge-invariant curvature correlators.
-2. Prove uniform exponential decay of the Euclidean connected correlators
+2. Establish uniform exponential decay of the Euclidean connected correlators
    directly, then use reconstruction and spectral representation to infer the
    gap.
 
-The proof draft should state which direction is being attempted.
+The conjecture thesis should state which direction is being attempted.
 
 ## Finite-Lattice Diagnostic Role
 
-The current repository can test only finite-lattice shadows of this lemma:
+The current repository can test only finite-lattice shadows of this target:
 
 - Wilson closure cost through plaquette defects,
 - gauge-invariant spatial Wilson-loop operator bases,

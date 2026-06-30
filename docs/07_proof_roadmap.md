@@ -1,23 +1,26 @@
-# Proof Roadmap
+# Conjecture Roadmap And Gap Register
 
-This repository is a computational sandbox, not a proof.
+This repository is a computational sandbox and conjecture-auditing environment,
+not a proof of the Clay Yang-Mills problem.
 
-The current proof draft is `docs/09_curvature_closure_proof.md`. It records the
-curvature-closure theorem target and the proof burden; it does not close the
-gaps listed below.
+The central thesis is the
+**Curvature-Closure Conjecture for the Yang-Mills Mass Gap**, recorded in
+`docs/09_curvature_closure_proof.md`. That document states a
+conjectural mechanism and the obligations that would be needed to turn it into a
+theorem.
 
 The lower-level coercivity target is `docs/10_closure_coercivity_lemma.md`.
-It decomposes the core lemma into non-circular definitions of closure energy,
-vacuum isolation, and the comparison between closure energy and Hamiltonian
-energy.
+It decomposes the central obligation into non-circular definitions of closure
+energy, vacuum isolation, and the comparison between closure energy and
+Hamiltonian energy.
 
-Finite-lattice experiments can organize implementation evidence, test
-discipline, and sharpen the curvature-closure proof target. They do not by
-themselves establish the continuum theorem.
+Finite-lattice experiments can organize diagnostics, test discipline, and
+sharpen the conjecture. They do not by themselves establish the continuum
+theorem.
 
 ## Current Role Of The Repository
 
-The repository can currently support proof-facing work only by making the
+The repository can currently support conjecture-auditing work by making the
 standard SU(2) Wilson-action finite-lattice baseline auditable:
 
 - packetized configurations, observables, diagnostics, correlators, and plots,
@@ -33,7 +36,8 @@ for construction, spectral analysis, or a continuum limit.
 
 ## Gap Register
 
-A proof-oriented program would need to close at least these gaps:
+A theorem-level development of the conjecture would need to close at least
+these gaps:
 
 | Gap | Current repository status | Required future evidence |
 | --- | --- | --- |
@@ -41,8 +45,8 @@ A proof-oriented program would need to close at least these gaps:
 | Gauge-invariant observable definitions | Finite-lattice Wilson loops and plaquette operators only | Continuum-compatible gauge-invariant observables |
 | Physical Hilbert space | Not supplied | Reflection positivity or another route to physical states |
 | Spectral formulation | Effective-mass diagnostics only | Transfer-matrix or Hamiltonian spectral control |
-| Positive lowest non-vacuum energy | Packet-level candidates only | Proof that the lowest non-vacuum gauge-invariant energy is strictly positive |
-| Closure coercivity | Proof target only | Non-circular closure energy, vacuum isolation, and Hamiltonian comparison |
+| Positive lowest non-vacuum energy | Packet-level candidates only | Theorem showing that the lowest non-vacuum gauge-invariant energy is strictly positive |
+| Closure coercivity | Conjectural target only | Non-circular closure energy, vacuum isolation, and Hamiltonian comparison |
 | Continuum limit | Not supplied | Controlled lattice-spacing limit |
 | Infinite-volume limit | Not supplied | Controlled thermodynamic limit |
 
@@ -63,7 +67,8 @@ packet-level candidate can motivate one of these arrows, but cannot replace it.
 
 ## Non-Evidence
 
-The following should not be treated as proof evidence:
+The following should not be treated as evidence that the standard Yang-Mills
+mass-gap problem has been solved:
 
 - a finite effective-mass value from one packet,
 - a plateau candidate without uncertainty, autocorrelation, and seed checks,
@@ -74,8 +79,8 @@ The following should not be treated as proof evidence:
 
 ## Advancement Standard
 
-The project should move from numerical-roadmap language toward proof-roadmap
-language only when the finite-lattice side has:
+The project should increase interpretive weight only when the finite-lattice
+side has:
 
 - unchanged standard Wilson-action dynamics,
 - reproducible packet artifacts,
