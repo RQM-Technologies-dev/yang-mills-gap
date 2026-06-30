@@ -1,21 +1,23 @@
 # yang-mills-gap
 
-This repo is a disciplined curvature-closure proof program for Yang-Mills
-existence and positive spectral gap.
+This repo is a disciplined conjecture program. Its central thesis is the
+**Curvature-Closure Conjecture for the Yang-Mills Mass Gap**.
 
-It is not a completed Clay proof. Its current role is to build a standard
-SU(2) Wilson lattice baseline, organize finite-lattice diagnostics as proof
-scaffolding, and keep the proof burden explicit.
+It is not a completed Clay Yang-Mills proof. Its current role is to keep a
+standard SU(2) Wilson-action lattice baseline auditable, organize finite-lattice
+diagnostics around a conjectural curvature-closure mechanism, and keep the
+future proof obligations explicit.
 
 ## Direction
 
 ```text
-standard SU(2) Wilson lattice baseline
+standard SU(2) Wilson-action baseline
   -> auditable finite-lattice diagnostics
-  -> non-circular curvature-closure energy
+  -> conjectural curvature-closure mechanism
+  -> non-circular closure-energy definition
   -> vacuum isolation in gauge-invariant closure topology
   -> closure energy controls reconstructed Hamiltonian energy
-  -> positive spectral gap
+  -> Yang-Mills mass-gap theorem, if the obligations are met
 ```
 
 ## Current Baseline
@@ -31,8 +33,9 @@ The code currently supports:
 - diagnostic packets, beta/seed sweeps, quality gates, and candidate
   assessments.
 
-These are finite-lattice proof scaffolding only. Packets, plots, effective-mass
-plateaus, and candidate assessments do not prove the continuum theorem.
+These are finite-lattice diagnostics only. Packets, plots, effective-mass
+plateaus, and candidate assessments may help audit the conjectural mechanism,
+but they do not prove the continuum theorem.
 
 ## Not Claimed
 
@@ -41,20 +44,20 @@ This repo does not currently provide:
 - a rigorous four-dimensional quantum Yang-Mills construction,
 - a continuum or infinite-volume limit,
 - a physical Hilbert-space construction,
-- a proof of closure coercivity,
-- a proof that closure energy controls Hamiltonian energy,
-- or a completed Clay Yang-Mills mass-gap proof.
+- a theorem-level closure-coercivity result,
+- a theorem showing that closure energy controls Hamiltonian energy,
+- or a solution of the Clay Yang-Mills mass-gap problem.
 
-Nonstandard anchor deformations are not part of the proof route and must not be
-used as evidence for standard Yang-Mills.
+Nonstandard anchor deformations are not part of the standard Yang-Mills
+diagnostic baseline and must not be cited for standard Yang-Mills.
 
 ## Read Next
 
 - `CLAIM_DISCIPLINE.md` - allowed and forbidden public claims.
-- `ROADMAP.md` - proof-oriented development sequence.
-- `docs/07_proof_roadmap.md` - proof-gap register.
-- `docs/09_curvature_closure_proof.md` - current proof draft.
-- `docs/10_closure_coercivity_lemma.md` - non-circular closure-coercivity target.
+- `ROADMAP.md` - conjecture-oriented development sequence.
+- `docs/07_proof_roadmap.md` - conjecture gap register.
+- `docs/09_curvature_closure_proof.md` - curvature-closure conjecture thesis.
+- `docs/10_closure_coercivity_lemma.md` - closure-coercivity target.
 - `docs/references/yangmills.pdf` - Clay problem statement PDF.
 
 ## Quick Start
