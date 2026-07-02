@@ -12,7 +12,8 @@ for the Yang-Mills Mass Gap**.
   diagnostics.
 - The **Curvature-Closure Conjecture for the Yang-Mills Mass Gap** is the
   organizing conjectural mechanism.
-- Closure energy is a non-circular theorem target to be defined and justified.
+- Closure energy is a Hamiltonian-gap-independent theorem target to be defined
+  and justified.
 - Finite-lattice results may suggest continuum spectral targets.
 - The standard SU(2) Wilson-action baseline is the diagnostic baseline.
 
@@ -35,7 +36,7 @@ Use:
 - finite-lattice diagnostic
 - diagnostic baseline
 - interpretation layer
-- non-circular closure-energy target
+- Hamiltonian-gap-independent closure-energy target
 - future proof obligation
 - theorem-level obligation
 

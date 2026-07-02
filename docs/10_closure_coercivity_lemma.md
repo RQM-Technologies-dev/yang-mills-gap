@@ -6,7 +6,7 @@ This document records the main lower-level coercivity target for the
 **Curvature-Closure Conjecture for the Yang-Mills Mass Gap** in
 `docs/09_curvature_closure_proof.md`.
 
-The target prevents circularity by defining closure energy independently,
+The target keeps closure energy independent of the spectral-gap conclusion,
 establishing vacuum isolation in that closure structure, and then deriving a
 Hamiltonian spectral lower bound.
 
@@ -40,7 +40,7 @@ for every physical state `psi` orthogonal to the vacuum.
 
 Both statements are theorem-level goals of the conjecture program.
 
-## Required Non-Circular Definitions
+## Required Hamiltonian-Gap-Independent Definitions
 
 The target needs three definitions made independently of the Hamiltonian gap.
 

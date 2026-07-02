@@ -9,9 +9,9 @@ The central thesis is the
 mechanism and the obligations that turn it into a theorem.
 
 The lower-level coercivity target is `docs/10_closure_coercivity_lemma.md`.
-It decomposes the central obligation into non-circular definitions of closure
-energy, vacuum isolation, and the comparison between closure energy and
-Hamiltonian energy.
+It decomposes the central obligation into a closure-energy definition that is
+independent of the Hamiltonian spectral gap, vacuum isolation, and the
+comparison between closure energy and Hamiltonian energy.
 
 Finite-lattice experiments organize diagnostics, test discipline, and sharpen
 the conjecture.
@@ -43,7 +43,7 @@ A theorem-level development of the conjecture requires progress on these gaps:
 | Physical Hilbert space | Theorem obligation | Reflection positivity or another route to physical states |
 | Spectral formulation | Effective-mass diagnostics | Transfer-matrix or Hamiltonian spectral control |
 | Positive lowest non-vacuum energy | Packet-level candidates | Theorem showing that the lowest non-vacuum gauge-invariant energy is strictly positive |
-| Closure coercivity | Conjectural target | Non-circular closure energy, vacuum isolation, and Hamiltonian comparison |
+| Closure coercivity | Conjectural target | Hamiltonian-gap-independent closure energy, vacuum isolation, and Hamiltonian comparison |
 | Continuum limit | Theorem obligation | Controlled lattice-spacing limit |
 | Infinite-volume limit | Theorem obligation | Controlled thermodynamic limit |
 

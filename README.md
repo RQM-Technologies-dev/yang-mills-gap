@@ -13,7 +13,7 @@ mechanism, and makes the theorem-level obligations explicit.
 standard SU(2) Wilson-action baseline
   -> auditable finite-lattice diagnostics
   -> conjectural curvature-closure mechanism
-  -> non-circular closure-energy definition
+  -> Hamiltonian-gap-independent closure-energy definition
   -> vacuum isolation in gauge-invariant closure topology
   -> closure energy controls reconstructed Hamiltonian energy
   -> Yang-Mills mass-gap theorem, if the obligations are met

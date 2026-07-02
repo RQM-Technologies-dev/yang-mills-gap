@@ -133,7 +133,7 @@ target is a theorem-level obligation derived from the constructed Yang-Mills
 measure, reflection positivity, the gauge-invariant observable algebra, and the
 reconstructed Hamiltonian.
 
-The non-circular version requires three intermediate statements:
+The Hamiltonian-gap-independent version requires three intermediate statements:
 
 1. curvature closure energy is defined independently of the Hamiltonian gap,
 2. the vacuum is isolated in that closure-energy topology,

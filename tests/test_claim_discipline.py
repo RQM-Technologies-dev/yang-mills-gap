@@ -13,18 +13,50 @@ def _read(relative_path: str) -> str:
 
 def test_main_roadmap_surfaces_keep_finite_lattice_claim_boundary() -> None:
     surfaces = {
-        "README.md": ("not a completed Clay proof", "finite-lattice diagnostics"),
-        "ROADMAP.md": ("proof-oriented", "finite-lattice outputs"),
-        "docs/09_curvature_closure_proof.md": ("proof draft and research program", "not a completed Clay"),
-        "docs/10_closure_coercivity_lemma.md": ("not a completed proof", "prevent circularity"),
-        "docs/07_proof_roadmap.md": ("computational sandbox, not a proof", "Gap Register"),
-        "CLAIM_DISCIPLINE.md": ("Forbidden Claims", "not a completed Clay proof"),
+        "README.md": (
+            "conjecture program",
+            "Hamiltonian-gap-independent closure-energy definition",
+        ),
+        "ROADMAP.md": ("conjecture-oriented", "finite-lattice outputs"),
+        "docs/09_curvature_closure_proof.md": (
+            "central conjectural mechanism",
+            "Hamiltonian-gap-independent",
+        ),
+        "docs/10_closure_coercivity_lemma.md": (
+            "Closure energy, vacuum isolation",
+            "independent of the spectral-gap conclusion",
+        ),
+        "docs/07_proof_roadmap.md": (
+            "computational sandbox and conjecture-auditing environment",
+            "Gap Register",
+        ),
+        "CLAIM_DISCIPLINE.md": (
+            "conjecture program",
+            "Hamiltonian-gap-independent closure-energy target",
+        ),
     }
 
     for relative_path, required_phrases in surfaces.items():
         text = _read(relative_path)
         for phrase in required_phrases:
             assert phrase in text
+
+
+def test_public_surfaces_avoid_overloaded_non_circular_wording() -> None:
+    surfaces = [
+        "README.md",
+        "ROADMAP.md",
+        "CLAIM_DISCIPLINE.md",
+        "docs/09_curvature_closure_proof.md",
+        "docs/10_closure_coercivity_lemma.md",
+        "docs/07_proof_roadmap.md",
+    ]
+    forbidden_phrases = ("non-circular", "prevents circularity")
+
+    for relative_path in surfaces:
+        text = _read(relative_path).lower()
+        for phrase in forbidden_phrases:
+            assert phrase.lower() not in text
 
 
 def test_public_research_surfaces_do_not_use_result_claim_language() -> None:

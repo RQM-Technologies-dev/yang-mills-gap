@@ -37,8 +37,7 @@ the standard SU(2) Wilson-action diagnostic baseline.
 ## 4. Closure-Energy Definitions
 
 - Formulate curvature closure while preserving the Wilson baseline.
-- Define a non-circular closure-energy target independent of the Hamiltonian
-  spectral gap.
+- Define a closure-energy target independently of the Hamiltonian spectral gap.
 - Specify admissible gauge-invariant curvature observables and the closure
   topology they generate.
 - Track the renormalization needed to compare lattice Wilson closure cost to a
@@ -50,7 +49,7 @@ the standard SU(2) Wilson-action diagnostic baseline.
   the first nontrivial gauge-invariant curvature-closure class.
 - Express the target as a positive lower bound for non-vacuum closure energy.
 - Keep `docs/10_closure_coercivity_lemma.md` as the current lower-level
-  non-circular conjectural target.
+  Hamiltonian-gap-independent conjectural target.
 
 ## 6. Closure-To-Hamiltonian Comparison
 
