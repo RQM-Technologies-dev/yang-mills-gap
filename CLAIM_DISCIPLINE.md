@@ -25,6 +25,24 @@ for the Yang-Mills Mass Gap**.
 - Anchor-deformed output belongs to a separate nonstandard study track.
 - Closure-coercivity is a theorem-level target.
 - Hamiltonian control is a theorem-level comparison target.
+- The KGF module is a finite-lattice spectroscopy calibration utility only. It
+  does not alter the standard Wilson-action baseline for SU(2) or its dynamics.
+
+Permitted KGF wording:
+
+- Klein–Gordon–Fock reference model
+- massive scalar calibration correlator
+- effective long-distance scalar reference behavior
+- finite-lattice spectroscopy calibration
+- single-state dominance diagnostic
+
+Forbidden or restricted KGF wording:
+
+- KGF-derived Yang–Mills mass
+- KGF proof of the mass gap
+- free-scalar derivation of glueball mass
+- cosh plateau proves the Clay result
+- scalar mass term for pure Yang–Mills
 
 ## Required Wording
 

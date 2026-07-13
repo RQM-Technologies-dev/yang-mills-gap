@@ -73,6 +73,20 @@ Finite-lattice interpretation uses:
 - and interpretation statements paired with corresponding standard Yang-Mills
   objects.
 
+### Klein–Gordon–Fock Calibration
+
+KGF synthetic correlators are a massive scalar reference model under diagnostic
+interpretation, not theorem completion. They validate that log and cosh
+effective-mass estimators recover known input masses and expose excited-state
+contamination. They do not prove curvature closure, closure coercivity, or a
+continuum mass.
+
+Observed Yang–Mills correlator decay must still be controlled across lattice
+spacing, volume, operator basis, statistical uncertainty, continuum and
+infinite-volume limits, and Osterwalder–Schrader reconstruction. Matching a
+KGF-like decay profile is a finite-lattice diagnostic and does not discharge
+those obligations.
+
 ## Advancement Standard
 
 The project increases interpretive weight when the finite-lattice side has:

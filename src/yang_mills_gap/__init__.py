@@ -5,6 +5,17 @@ claim a continuum Yang-Mills construction or a completed mass-gap proof.
 """
 
 from .gauge_field import GaugeField
+from .kgf_reference import (
+    kgf_exponential_correlator,
+    kgf_periodic_correlator,
+    kgf_spectral_correlator,
+)
 from .lattice import Lattice4D
 
-__all__ = ["GaugeField", "Lattice4D"]
+__all__ = [
+    "GaugeField",
+    "Lattice4D",
+    "kgf_exponential_correlator",
+    "kgf_periodic_correlator",
+    "kgf_spectral_correlator",
+]

@@ -36,6 +36,25 @@ Finite-lattice packets serve as diagnostics for auditing the conjectural
 mechanism. Packets, plots, effective-mass plateaus, and candidate assessments
 help identify continuum spectral targets for theorem-level work.
 
+## Klein–Gordon–Fock Spectral Reference
+
+The repository uses Klein–Gordon–Fock (KGF) as a massive scalar reference model
+to calibrate correlator and effective-mass diagnostics. KGF does not prove or
+generate the Yang–Mills mass gap: curvature closure remains the conjectured
+origin of a positive physical threshold, while Euclidean construction,
+Osterwalder–Schrader reconstruction, and spectral control remain theorem-level
+obligations.
+
+This is a parallel diagnostic translation, not an extra proof step:
+
+```text
+gauge-invariant curvature observable
+  -> connected Euclidean correlator
+  -> comparison with massive-scalar reference behavior
+  -> finite-lattice effective-mass candidate
+  -> proposed continuum spectral target
+```
+
 ## Conjecture Standards
 
 Theorem-level development requires:
@@ -59,6 +78,8 @@ layer.
 - `docs/07_proof_roadmap.md` - conjecture gap register.
 - `docs/09_curvature_closure_proof.md` - curvature-closure conjecture thesis.
 - `docs/10_closure_coercivity_lemma.md` - closure-coercivity target.
+- `docs/11_klein_gordon_fock_spectral_bridge.md` - massive-scalar spectral
+  reference and claim boundary.
 - `docs/references/yangmills.pdf` - Clay problem statement PDF.
 
 ## Quick Start
@@ -103,6 +124,7 @@ src/yang_mills_gap/
   monte_carlo.py         Full-action and local-action Metropolis sweeps
   correlators.py         Connected temporal correlators
   effective_mass.py      Log and cosh effective-mass estimators
+  kgf_reference.py       Synthetic massive-scalar calibration correlators
   plateau.py             Plateau heuristics for diagnostics
   candidate.py           Packet-level candidate assessment
   diagnostics.py         Finite-chain diagnostics

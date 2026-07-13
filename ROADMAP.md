@@ -34,6 +34,15 @@ the standard SU(2) Wilson-action diagnostic baseline.
 - Use plateau and candidate reports as finite-lattice signals that may suggest
   continuum spectral targets.
 
+### Estimator Calibration
+
+- Maintain KGF synthetic correlators as calibration fixtures, separate from
+  Yang–Mills data and evidence.
+- Test estimator recovery against known inserted masses.
+- Test excited-state contamination and delayed single-state dominance.
+- Test forward-plus-backward finite-period cosh behavior.
+- Keep estimator validation separate from claims about Yang–Mills dynamics.
+
 ## 4. Closure-Energy Definitions
 
 - Formulate curvature closure while preserving the Wilson baseline.

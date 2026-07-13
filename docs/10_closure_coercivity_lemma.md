@@ -40,6 +40,16 @@ for every physical state `psi` orthogonal to the vacuum.
 
 Both statements are theorem-level goals of the conjecture program.
 
+## Klein–Gordon–Fock Reference Boundary
+
+The KGF reference model begins with a positive mass parameter. Closure
+coercivity instead attempts to establish a positive threshold without assuming
+that parameter. KGF therefore cannot define closure energy or prove vacuum
+isolation. It may be used only alongside or after spectral analysis as a
+calibration reference for the propagation and Euclidean decay consequences of
+an already positive threshold. Osterwalder–Schrader reconstruction remains the
+theorem-level Euclidean-to-Hamiltonian bridge.
+
 ## Required Hamiltonian-Gap-Independent Definitions
 
 The target needs three definitions made independently of the Hamiltonian gap.

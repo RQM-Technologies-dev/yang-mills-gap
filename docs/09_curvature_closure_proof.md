@@ -167,3 +167,17 @@ plaquette holonomy
 
 This bridge organizes diagnostics and candidate definitions for the conjecture
 program.
+
+## Klein–Gordon–Fock Spectral Translation
+
+Curvature closure proposes why a positive rest-energy threshold exists.
+Klein–Gordon–Fock supplies the canonical long-distance signature of an already
+massive scalar state. A scalar gauge-invariant curvature operator may overlap
+with a glueball-like state, and its Euclidean correlator may become KGF-like
+when an isolated lowest state dominates.
+
+That state remains a composite Yang–Mills excitation, not a fundamental free
+scalar. KGF is a reference model for translating positive mass into
+exponential or periodic-cosh decay; it does not prove the mass gap, establish
+closure coercivity, replace Osterwalder–Schrader reconstruction, or satisfy any
+other proof obligation by itself.

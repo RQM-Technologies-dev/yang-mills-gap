@@ -80,6 +80,57 @@ def test_public_research_surfaces_do_not_use_result_claim_language() -> None:
             assert phrase not in text
 
 
+def test_kgf_reference_surfaces_state_the_division_of_labor() -> None:
+    assert (ROOT / "docs/11_klein_gordon_fock_spectral_bridge.md").is_file()
+    for relative_path in (
+        "README.md",
+        "docs/11_klein_gordon_fock_spectral_bridge.md",
+    ):
+        text = _read(relative_path).lower()
+        for phrase in (
+            "reference model",
+            "does not prove",
+            "curvature closure",
+            "osterwalder–schrader",
+        ):
+            assert phrase in text
+
+    discipline = _read("CLAIM_DISCIPLINE.md").lower()
+    assert "does not alter the standard wilson-action baseline" in discipline
+
+
+def test_public_surfaces_do_not_assert_kgf_overclaims() -> None:
+    surfaces = (
+        "README.md",
+        "ROADMAP.md",
+        "docs/07_proof_roadmap.md",
+        "docs/09_curvature_closure_proof.md",
+        "docs/10_closure_coercivity_lemma.md",
+    )
+    prohibited = (
+        "klein-gordon-fock proves the yang-mills mass gap",
+        "kgf proves the mass gap",
+        "adding a klein-gordon mass",
+        "the glueball is a free scalar",
+        "cosh plateau proves",
+        "effective mass is the clay gap",
+    )
+
+    for relative_path in surfaces:
+        text = _read(relative_path).lower()
+        for phrase in prohibited:
+            assert phrase not in text
+
+
+def test_kgf_document_makes_forbidden_claims_visible_as_quotations() -> None:
+    text = _read("docs/11_klein_gordon_fock_spectral_bridge.md")
+
+    assert "### Forbidden claims" in text
+    assert "Klein–Gordon–Fock proves the Yang–Mills mass gap" in text
+    assert "A cosh fit proves the continuum gap" in text
+    assert "KGF establishes closure coercivity" in text
+
+
 def test_packet_claim_boundaries_remain_diagnostic_only() -> None:
     assert "diagnostic only" in BASELINE_CLAIM_BOUNDARY
     assert "not a mass-gap estimate" in BASELINE_CLAIM_BOUNDARY
@@ -109,6 +160,7 @@ def test_no_links_to_removed_fragment_docs() -> None:
         "docs/07_proof_roadmap.md",
         "docs/09_curvature_closure_proof.md",
         "docs/10_closure_coercivity_lemma.md",
+        "docs/11_klein_gordon_fock_spectral_bridge.md",
     )
 
     for relative_path in surfaces:
